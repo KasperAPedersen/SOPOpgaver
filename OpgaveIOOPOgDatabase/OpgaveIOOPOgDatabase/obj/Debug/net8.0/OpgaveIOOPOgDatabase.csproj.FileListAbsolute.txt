@@ -1,0 +1,15 @@
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\bin\Debug\net8.0\OpgaveIOOPOgDatabase.exe
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\bin\Debug\net8.0\OpgaveIOOPOgDatabase.deps.json
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\bin\Debug\net8.0\OpgaveIOOPOgDatabase.runtimeconfig.json
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\bin\Debug\net8.0\OpgaveIOOPOgDatabase.dll
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\bin\Debug\net8.0\OpgaveIOOPOgDatabase.pdb
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.AssemblyInfoInputs.cache
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.AssemblyInfo.cs
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.csproj.CoreCompileInputs.cache
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.sourcelink.json
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.dll
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\refint\OpgaveIOOPOgDatabase.dll
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.pdb
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\OpgaveIOOPOgDatabase.genruntimeconfig.cache
+C:\Users\kaspe\Desktop\SOPOpgaver\OpgaveIOOPOgDatabase\OpgaveIOOPOgDatabase\obj\Debug\net8.0\ref\OpgaveIOOPOgDatabase.dll
