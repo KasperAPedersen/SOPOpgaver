@@ -9,15 +9,8 @@ namespace OpgaveIOOPOgDatabase
     internal class CObject : CRender
     {
         public Position position;
+        public Position absPosition;
         public Size size;
         public CObject? parent;
-
-        public CObject(Position position, Size size, CObject? parent = null)
-        {
-            this.position = position;
-            this.size = size;
-            this.parent = parent;
-        }
-
     }
 }

@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|c:\\users\\kaspe\\desktop\\sopopgaver\\opgaveioopogdatabase\\opgaveioopogdatabase\\cbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|solutionrelative:opgaveioopogdatabase\\cbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|c:\\users\\kaspe\\desktop\\sopopgaver\\opgaveioopogdatabase\\opgaveioopogdatabase\\ctext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|solutionrelative:opgaveioopogdatabase\\ctext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|c:\\users\\kaspe\\desktop\\sopopgaver\\opgaveioopogdatabase\\opgaveioopogdatabase\\crender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|solutionrelative:opgaveioopogdatabase\\crender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|c:\\users\\kaspe\\desktop\\sopopgaver\\opgaveioopogdatabase\\opgaveioopogdatabase\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|solutionrelative:opgaveioopogdatabase\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|c:\\users\\kaspe\\desktop\\sopopgaver\\opgaveioopogdatabase\\opgaveioopogdatabase\\cobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|solutionrelative:opgaveioopogdatabase\\cobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|c:\\users\\kaspe\\desktop\\sopopgaver\\opgaveioopogdatabase\\opgaveioopogdatabase\\cpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFD29CED-EB93-4921-98F5-3F4BBC49FFD9}|OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase.csproj|solutionrelative:opgaveioopogdatabase\\cpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,43 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CBox.cs",
-              "DocumentMoniker": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CBox.cs",
-              "RelativeDocumentMoniker": "OpgaveIOOPOgDatabase\\CBox.cs",
-              "ToolTip": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CBox.cs",
-              "RelativeToolTip": "OpgaveIOOPOgDatabase\\CBox.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAswBsAAABNAAAA",
+              "DocumentIndex": 1,
+              "Title": "CRender.cs",
+              "DocumentMoniker": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CRender.cs",
+              "RelativeDocumentMoniker": "OpgaveIOOPOgDatabase\\CRender.cs",
+              "ToolTip": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CRender.cs",
+              "RelativeToolTip": "OpgaveIOOPOgDatabase\\CRender.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAgwEEAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T15:40:50.17Z",
+              "WhenOpened": "2024-06-07T23:20:34.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CText.cs",
+              "DocumentMoniker": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CText.cs",
+              "RelativeDocumentMoniker": "OpgaveIOOPOgDatabase\\CText.cs",
+              "ToolTip": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CText.cs",
+              "RelativeToolTip": "OpgaveIOOPOgDatabase\\CText.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAgwBQAAAC+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T01:50:30.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CPanel.cs",
+              "DocumentMoniker": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CPanel.cs",
+              "RelativeDocumentMoniker": "OpgaveIOOPOgDatabase\\CPanel.cs",
+              "ToolTip": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CPanel.cs",
+              "RelativeToolTip": "OpgaveIOOPOgDatabase\\CPanel.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBQAAABXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T21:19:46.265Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CObject.cs",
-              "DocumentMoniker": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CObject.cs",
-              "RelativeDocumentMoniker": "OpgaveIOOPOgDatabase\\CObject.cs",
-              "ToolTip": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\CObject.cs",
-              "RelativeToolTip": "OpgaveIOOPOgDatabase\\CObject.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABLAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T15:38:16.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\Program.cs",
               "RelativeDocumentMoniker": "OpgaveIOOPOgDatabase\\Program.cs",
               "ToolTip": "C:\\Users\\kaspe\\Desktop\\SOPOpgaver\\OpgaveIOOPOgDatabase\\OpgaveIOOPOgDatabase\\Program.cs",
               "RelativeToolTip": "OpgaveIOOPOgDatabase\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAtAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-07T13:06:38.556Z",
               "EditorCaption": ""

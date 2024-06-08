@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OpgaveIOOPOgDatabase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d39fb24bfa215e8bc473cb7547c895e5690a67ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29af04ddfda306b08a115aaeb210095e83153bd7")]
 [assembly: System.Reflection.AssemblyProductAttribute("OpgaveIOOPOgDatabase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OpgaveIOOPOgDatabase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

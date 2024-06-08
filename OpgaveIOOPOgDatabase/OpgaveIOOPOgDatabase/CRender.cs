@@ -18,12 +18,65 @@ namespace OpgaveIOOPOgDatabase
 
         internal void Erase(Position pos, Size size)
         {
-            string tmp = string.Concat(Enumerable.Repeat(" ", size.Horizontal));
+            string tmp = new string(' ', size.Horizontal);
             for(int i = 0; i < size.Vertical; i++)
             {
                 Console.SetCursorPosition(pos.Horizontal, pos.Vertical + i);
                 Console.Write(tmp);
             }
+        }
+
+        internal Position Align(CObject obj, CObject parent, Alignment alignment)
+        {
+            Position pos = new Position(0, 0);
+
+            switch(alignment)
+            {
+                case Alignment.TopLeft:
+                    pos = new Position(1, 1);
+                    break;
+                case Alignment.TopRight:
+                    pos = new Position(parent.size.Horizontal - obj.size.Horizontal - obj.position.Horizontal - 1, 1);
+                    break;
+                case Alignment.TopCenter:
+                    pos = new Position((parent.size.Horizontal - obj.size.Horizontal - 1) / 2, 1);
+                    break;
+                case Alignment.BottomLeft:
+                    pos = new Position(1, parent.size.Vertical - obj.size.Vertical - 1 - obj.position.Vertical);
+                    break;
+                case Alignment.BottomRight:
+                    pos = new Position(parent.size.Horizontal - obj.size.Horizontal - 1 - obj.position.Horizontal, parent.size.Vertical - obj.size.Vertical - 1 - obj.position.Vertical);
+                    break;
+                case Alignment.BottomCenter:
+                    pos = new Position((parent.size.Horizontal - obj.size.Horizontal) / 2, parent.size.Vertical - obj.size.Vertical - 1 - obj.position.Vertical);
+                    break;
+                case Alignment.MiddleLeft:
+                    pos = new Position(1, (parent.size.Vertical - obj.size.Vertical) / 2);
+                    break;
+                case Alignment.MiddleRight:
+                    pos = new Position(parent.size.Horizontal - obj.size.Horizontal - 1 - obj.position.Horizontal, ((parent.size.Vertical - obj.size.Vertical) / 2));
+                    break;
+                case Alignment.MiddleCenter:
+                    pos = new Position((parent.size.Horizontal - obj.size.Horizontal) / 2, (parent.size.Vertical - obj.size.Vertical) / 2);
+                    break;
+
+            }
+
+            return pos;
+        }
+    
+        public enum Alignment
+        {
+            None = 0,
+            TopLeft = 1,
+            TopCenter = 2,
+            TopRight = 3,
+            BottomLeft = 4,
+            BottomRight = 5,
+            BottomCenter = 6,
+            MiddleLeft = 7,
+            MiddleRight = 8,
+            MiddleCenter = 9
         }
     }
 }
