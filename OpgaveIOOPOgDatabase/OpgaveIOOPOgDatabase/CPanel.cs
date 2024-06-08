@@ -41,10 +41,6 @@ namespace OpgaveIOOPOgDatabase
             }
             Write(new Position(absPosition.Horizontal, absPosition.Vertical + size.Vertical - 1), new string('#', size.Horizontal));
 
-            Write(new Position(2, 15 + position.Vertical), "\n" + position.Horizontal + "/" + position.Vertical + "(" + size.Horizontal + ") " + absPosition.Horizontal + "/" + absPosition.Vertical + "\n\n");
-
-
-
         }
     }
 

@@ -10,14 +10,14 @@ namespace OpgaveIOOPOgDatabase
     internal class CText : CObject
     {
         public Alignment alignment { get; set; } = Alignment.None;
-        public string text = "Swoopai";
+        public string text = "";
 
         internal void Render()
         {
             if (alignment != Alignment.None && parent != null)
             {
                 position = Align(this, parent, alignment);
-                position = new Position(position.Horizontal - (text.Length / 2), position.Vertical);
+                position = new Position(position.Horizontal, position.Vertical);
                 absPosition = new Position(absPosition.Horizontal + (position.Horizontal < 0 ? 1 : position.Horizontal), absPosition.Vertical + (position.Vertical < 0 ? 1 : position.Vertical));
             }
 
@@ -28,13 +28,6 @@ namespace OpgaveIOOPOgDatabase
                 
             }
 
-            if (position.Horizontal + size.Horizontal > (parent?.size.Horizontal ?? Console.WindowWidth))
-                size.Horizontal = (parent?.size.Horizontal ?? Console.WindowWidth) - position.Horizontal - 1;
-
-            if (position.Vertical + size.Vertical > (parent?.size.Vertical ?? Console.WindowHeight))
-                size.Vertical = (parent?.size.Vertical ?? Console.WindowHeight) - position.Vertical - 1;
-
-            
             Write(absPosition, text);
         }
     }
@@ -45,6 +38,7 @@ namespace OpgaveIOOPOgDatabase
 
         public CText Build()
         {
+            if (text.text == "") AddText("Swoopai");
             text.Render();
             return text;
         }
@@ -57,8 +51,11 @@ namespace OpgaveIOOPOgDatabase
 
         public CTextBuilder AddText(string newText)
         {
+            if(text.position.Horizontal + newText.Length >= (text.parent?.size.Horizontal ?? Console.WindowWidth) - 1) return this;
+
             text.text = newText;
             text.size = new Size(newText.Length, 1);
+
             return this;
         }
 
@@ -84,7 +81,7 @@ namespace OpgaveIOOPOgDatabase
             text.parent = null;
             text.position = new Position(0, 0);
             text.alignment = Alignment.None;
-            text.text = "Swoopai";
+            AddText("Swoopai");
             return this;
         }
     }
