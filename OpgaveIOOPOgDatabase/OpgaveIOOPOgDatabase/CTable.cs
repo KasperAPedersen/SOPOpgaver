@@ -114,7 +114,7 @@ namespace OpgaveIOOPOgDatabase
                         tmp += new string(' ', (tabWidth - contentText.Length) / 2); // Add left side spacing to string
                         tmp += contentText; // Add content text to string
                         tmp += new string(' ', (tabWidth - contentText.Length) / 2); // Add right side spacing to string
-                        if (o == headers.Count - 1) tmp = tmp.Substring(0, tmp.Length - 1);
+                        if (o == headers.Count - 1) tmp = tmp.Substring(0, tmp.Length - 1); // If tab is last one, remove 1 spacing after content text
                         tmp += Border(Get.Vertical); // Add # to the end of the string
                         Write(new Position(absPosition.Horizontal + (o * tabWidth), absPosition.Vertical + currentHeight), tmp); // Write string to screen
                     }
