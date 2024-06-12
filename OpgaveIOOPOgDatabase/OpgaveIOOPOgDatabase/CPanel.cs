@@ -32,13 +32,13 @@ namespace OpgaveIOOPOgDatabase
             if (position.Vertical + size.Vertical > (parent?.size.Vertical ?? Console.WindowHeight))
                 size.Vertical = (parent?.size.Vertical ?? Console.WindowHeight) - position.Vertical - 1;
 
-            Write(absPosition, new string('#', size.Horizontal));
+            Write(absPosition, Border(Get.TopLeft) + new string(Border(Get.Horizontal), size.Horizontal - 2) + Border(Get.TopRight));
             for (int i = 1; i < size.Vertical - 1; i++)
             {
-                Write(new Position(absPosition.Horizontal, absPosition.Vertical + i), $"#{new string(' ', size.Horizontal - 2)}#");
+                Write(new Position(absPosition.Horizontal, absPosition.Vertical + i), $"{Border(Get.Vertical)}{new string(' ', size.Horizontal - 2)}{Border(Get.Vertical)}");
 
             }
-            Write(new Position(absPosition.Horizontal, absPosition.Vertical + size.Vertical - 1), new string('#', size.Horizontal));
+            Write(new Position(absPosition.Horizontal, absPosition.Vertical + size.Vertical - 1), Border(Get.BottomLeft) + new string(Border(Get.Horizontal), size.Horizontal - 2) + Border(Get.BottomRight));
 
         }
     }

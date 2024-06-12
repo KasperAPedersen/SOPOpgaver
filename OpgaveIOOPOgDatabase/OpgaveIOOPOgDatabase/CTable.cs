@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,66 +28,69 @@ namespace OpgaveIOOPOgDatabase
         internal void Render()
         {
 
-            if (alignment != Alignment.None && parent != null)
+            if (alignment != Alignment.None && parent != null) // If alignemt is set, update positioning
             {
                 position = Align(this, parent, alignment);
                 absPosition = new Position(absPosition.Horizontal + position.Horizontal, absPosition.Vertical + position.Vertical);
             }
 
-            if (parent != null)
+            if (parent != null) // If parent exists, update positioning
             {
                 position.Horizontal = Math.Max(1, position.Horizontal);
                 position.Vertical = Math.Max(1, position.Vertical);
             }
 
+            // If size exceeds parent size, update size
             if (position.Horizontal + size.Horizontal > (parent?.size.Horizontal ?? Console.WindowWidth))
                 size.Horizontal = (parent?.size.Horizontal ?? Console.WindowWidth) - absPosition.Horizontal - 1;
 
+            // If size exceeds parent size, update size
             if (position.Vertical + size.Vertical > (parent?.size.Vertical ?? Console.WindowHeight))
                 size.Vertical = (parent?.size.Vertical ?? Console.WindowHeight) - absPosition.Vertical - 2;
             // --
 
-            Erase(position, size);
+            Erase(position, size); // Clear screen for position & size of element
+            
             if (selectIndex > 11) selectIndex = 10;
             if (selectIndex < 10) selectIndex = 11;
 
-            if (contentIndex > contents.Count - 1)
+            if (contentIndex > contents.Count - 1) // If contenIndex is last, contentIndex & currentpage to 0
             {
                 contentIndex = 0;
                 currentPage = 0;
             }
 
-            if (contentIndex < 0)
+            if (contentIndex < 0) // if contentIndex is first, set contentIndex & currentpage to last
             {
                 contentIndex = contents.Count - 1;
                 currentPage = contents.Count / maxPerPage;
             }
 
-            if (contentIndex > (currentPage + 1) * maxPerPage - 1) currentPage++;
-            if (contentIndex < ((currentPage + 1) * maxPerPage) - maxPerPage && currentPage > 0) currentPage--;
+            if (contentIndex > (currentPage + 1) * maxPerPage - 1) currentPage++; // If contentIndex is last on page, increase currentpage
+            if (contentIndex < ((currentPage + 1) * maxPerPage) - maxPerPage && currentPage > 0) currentPage--; // if contentIndex is first on page, decrease currentpage
 
             string tmp;
-            int tabWidth = size.Horizontal / headers.Count;
+            int tabWidth = size.Horizontal / headers.Count; // Calculate max tab width
 
             // headers
             for(int i = 0; i < headers.Count; i++)
             {
                 currentHeight = 0;
-                tmp = "#"; // Set string to begin with #
-                tmp += new string('#', tabWidth - 1); // Add # for the tab width
-                tmp += i == headers.Count - 1 ? "#" : ""; // If header is the last one, add # to string
+                tmp = i == 0 ? Border(Get.TopLeft).ToString() : Border(Get.HorizontalDown).ToString(); // Set string to begin with #
+                tmp += new string(Border(Get.Horizontal), tabWidth - 1); // Add # for the tab width
+                tmp += i == headers.Count - 1 ? Border(Get.TopRight) : ""; // If header is the last one, add # to string
                 Write(new Position(absPosition.Horizontal + (i * tabWidth), absPosition.Vertical + currentHeight++), tmp); // Write string to screen
 
-                tmp = "#"; // Set string to begin with #
+                tmp = Border(Get.Vertical).ToString(); // Set string to begin with #
                 tmp += new string(' ', (tabWidth - headers[i].Length) / 2); // Add left side spacing to string
                 tmp += headers[i]; // Add header text to string
                 tmp += new string(' ', (tabWidth - 1 - headers[i].Length) / 2); // Add right side spacing to string
-                tmp += i == headers.Count - 1 ? '#' : ""; // If header is the last one, add # to string
+                tmp += i == headers.Count - 1 ? Border(Get.Vertical) : ""; // If header is the last one, add # to string
                 Write(new Position(absPosition.Horizontal + (i * tabWidth), absPosition.Vertical + currentHeight++), tmp); // Write string to screen
 
-                tmp = "#"; // Set string to begin with #
-                tmp += new string('#', tabWidth - 1); // Add # for the tab width
-                tmp += i == headers.Count - 1 ? "#" : ""; // If header is the last one, add # to string
+                tmp = i == 0 ? Border(Get.VerticalLeft).ToString() : Border(Get.Cross).ToString(); // Set string to begin with #
+                tmp += new string(Border(Get.Horizontal), tabWidth - 1); // Add # for the tab width
+                tmp += i == headers.Count - 1 ? Border(Get.VerticalRight) : ""; // If header is the last one, add # to string
                 Write(new Position(absPosition.Horizontal + (i * tabWidth), absPosition.Vertical + currentHeight++), tmp); // Write string to screen
             }
 
@@ -107,11 +112,11 @@ namespace OpgaveIOOPOgDatabase
                         if (contentIndex == i && selectIndex == o) contentText = $"> {contentText}"; // if content & select is active, add > to content text
 
                         
-                        tmp = "#"; // Set string to begin with #
+                        tmp = Border(Get.Vertical).ToString(); // Set string to begin with #
                         tmp += new string(' ', (tabWidth - contentText.Length) / 2); // Add left side spacing to string
                         tmp += contentText; // Add content text to string
                         tmp += new string(' ', (tabWidth - contentText.Length) / 2); // Add right side spacing to string
-                        tmp += "#"; // Add # to the end of the string
+                        tmp += Border(Get.Vertical); // Add # to the end of the string
                         Write(new Position(absPosition.Horizontal + (o * tabWidth), absPosition.Vertical + currentHeight), tmp); // Write string to screen
                     }
                     currentHeight++; // Increase the height
@@ -119,19 +124,24 @@ namespace OpgaveIOOPOgDatabase
             }
 
             // Write footer border top to screen
-            tmp = $"#{(new string('#', tabWidth * headers.Count - 1))}#";
-            Write(new Position(absPosition.Horizontal, absPosition.Vertical + currentHeight), tmp);
+            for (int i = 0; i < headers.Count; i++)
+            {
+                tmp = i == 0 ? Border(Get.VerticalLeft).ToString() : Border(Get.HorizontalUp).ToString();
+                tmp += new string(Border(Get.Horizontal), tabWidth - 1);
+                tmp += i == headers.Count - 1 ? Border(Get.VerticalRight) : "";
+                Write(new Position(absPosition.Horizontal + (i * tabWidth), absPosition.Vertical + currentHeight), tmp);
+            }
 
             string footerText = $"Page {currentPage + 1}/{((contents.Count / maxPerPage + (contents.Count % maxPerPage == 0 ? 0 : 1)) == 0 ? 1 : contents.Count / maxPerPage + (contents.Count % maxPerPage == 0 ? 0 : 1))}";
             int footerSpacingRemainder = (tabWidth * headers.Count - 1 - footerText.Length) % 2; // Calculates the remainder of the spacing
             string footerSpacing = new string(' ', (tabWidth * headers.Count - 1 - footerText.Length) / 2); // Spacing for each side of the footer text
 
             // Write footer content to screen
-            tmp = $"#{footerSpacing}{footerText}{footerSpacing}{(footerSpacingRemainder != 0 ? new string(' ', footerSpacingRemainder) : "")}#";
+            tmp = $"{Border(Get.Vertical)}{footerSpacing}{footerText}{footerSpacing}{(footerSpacingRemainder != 0 ? new string(' ', footerSpacingRemainder) : "")}{Border(Get.Vertical)}";
             Write(new Position(absPosition.Horizontal, absPosition.Vertical + ++currentHeight), tmp);
 
             // Write footer border bottom to screen
-            tmp = $"#{(new string('#', tabWidth * headers.Count - 1))}#";
+            tmp = $"{Border(Get.BottomLeft)}{(new string(Border(Get.Horizontal), tabWidth * headers.Count - 1))}{Border(Get.BottomRight)}";
             Write(new Position(absPosition.Horizontal, absPosition.Vertical + ++currentHeight), tmp);
         }
 

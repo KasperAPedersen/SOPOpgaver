@@ -78,5 +78,41 @@ namespace OpgaveIOOPOgDatabase
             MiddleRight = 8,
             MiddleCenter = 9
         }
+
+        internal static char Border(Get _part)
+        {
+            return _part switch
+            {
+                Get.TopLeft => '┌',
+                Get.TopRight => '┐',
+                Get.BottomLeft => '└',
+                Get.BottomRight => '┘',
+                Get.Horizontal => '─',
+                Get.HorizontalDown => '┬',
+                Get.HorizontalUp => '┴',
+                Get.Vertical => '│',
+                Get.VerticalLeft => '├',
+                Get.VerticalRight => '┤',
+                Get.Cross => '┼',
+                Get.ArrowDown => '↓',
+                _ => throw new InvalidOperationException("Unknown Global.Border part."),
+            };
+        }
+
+        internal enum Get
+        {
+            TopLeft,
+            TopRight,
+            BottomLeft,
+            BottomRight,
+            Horizontal,
+            HorizontalDown,
+            HorizontalUp,
+            Vertical,
+            VerticalLeft,
+            VerticalRight,
+            Cross,
+            ArrowDown
+        }
     }
 }
