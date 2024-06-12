@@ -6,6 +6,7 @@ using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using static OpgaveIOOPOgDatabase.CRender;
 
 namespace OpgaveIOOPOgDatabase
 {
@@ -40,16 +41,13 @@ namespace OpgaveIOOPOgDatabase
                 position.Vertical = Math.Max(1, position.Vertical);
             }
 
-            // If size exceeds parent size, update size
-            if (position.Horizontal + size.Horizontal > (parent?.size.Horizontal ?? Console.WindowWidth))
-                size.Horizontal = (parent?.size.Horizontal ?? Console.WindowWidth) - absPosition.Horizontal - 1;
-
+           
             // If size exceeds parent size, update size
             if (position.Vertical + size.Vertical > (parent?.size.Vertical ?? Console.WindowHeight))
                 size.Vertical = (parent?.size.Vertical ?? Console.WindowHeight) - absPosition.Vertical - 2;
             // --
 
-            Erase(position, size); // Clear screen for position & size of element
+            //Erase(position, size); // Clear screen for position & size of element
             
             if (selectIndex > 11) selectIndex = 10;
             if (selectIndex < 10) selectIndex = 11;
@@ -70,7 +68,7 @@ namespace OpgaveIOOPOgDatabase
             if (contentIndex < ((currentPage + 1) * maxPerPage) - maxPerPage && currentPage > 0) currentPage--; // if contentIndex is first on page, decrease currentpage
 
             string tmp;
-            int tabWidth = size.Horizontal / headers.Count; // Calculate max tab width
+            int tabWidth = size.Horizontal / headers.Count - 1; // Calculate max tab width
 
             // headers
             for(int i = 0; i < headers.Count; i++)
@@ -116,6 +114,7 @@ namespace OpgaveIOOPOgDatabase
                         tmp += new string(' ', (tabWidth - contentText.Length) / 2); // Add left side spacing to string
                         tmp += contentText; // Add content text to string
                         tmp += new string(' ', (tabWidth - contentText.Length) / 2); // Add right side spacing to string
+                        if (o == headers.Count - 1) tmp = tmp.Substring(0, tmp.Length - 1);
                         tmp += Border(Get.Vertical); // Add # to the end of the string
                         Write(new Position(absPosition.Horizontal + (o * tabWidth), absPosition.Vertical + currentHeight), tmp); // Write string to screen
                     }
@@ -230,6 +229,12 @@ namespace OpgaveIOOPOgDatabase
         public CTableBuilder AddContent(List<string> content)
         {
             table.contents.Add(content);
+            return this;
+        }
+
+        public CTableBuilder AddAlignment(Alignment align)
+        {
+            table.alignment = align;
             return this;
         }
     }
