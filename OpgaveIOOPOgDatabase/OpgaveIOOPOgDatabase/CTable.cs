@@ -47,7 +47,7 @@ namespace OpgaveIOOPOgDatabase
                 size.Vertical = (parent?.size.Vertical ?? Console.WindowHeight) - absPosition.Vertical - 2;
             // --
 
-            //Erase(position, size); // Clear screen for position & size of element
+            Erase(new Position(position.Horizontal, position.Vertical), new Size(size.Horizontal + position.Horizontal - 12, size.Vertical)); // Clear screen for position & size of element
             
             if (selectIndex > 11) selectIndex = 10;
             if (selectIndex < 10) selectIndex = 11;
@@ -142,6 +142,7 @@ namespace OpgaveIOOPOgDatabase
             // Write footer border bottom to screen
             tmp = $"{Border(Get.BottomLeft)}{(new string(Border(Get.Horizontal), tabWidth * headers.Count - 1))}{Border(Get.BottomRight)}";
             Write(new Position(absPosition.Horizontal, absPosition.Vertical + ++currentHeight), tmp);
+
         }
 
         internal void Reset()
