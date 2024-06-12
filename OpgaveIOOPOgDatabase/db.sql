@@ -13,9 +13,10 @@ CREATE TABLE schools (
 );
 
 CREATE TABLE education (
-  educationID INT PRIMARY KEY,
+  customerid INT,
+  educationName int,
   educationEnd DATE,
-  FOREIGN KEY (educationID) REFERENCES schools(educationID)
+  FOREIGN KEY (educationName) REFERENCES schools(educationID)
 );
 
 CREATE TABLE jobs (
@@ -23,11 +24,12 @@ CREATE TABLE jobs (
   JobName VARCHAR(255)
 );
 
-CREATE TABLE Employment (
-  EmploymentID INT PRIMARY KEY,
+CREATE TABLE employment (
+  customerid INT,
+  EmploymentName int,
   EmploymentStart DATE,
   EmploymentEnd DATE,
-  FOREIGN KEY (EmploymentID) REFERENCES jobs(JobID)
+  FOREIGN KEY (EmploymentName) REFERENCES jobs(JobID)
 );
 
 CREATE TABLE customer (
@@ -36,17 +38,22 @@ CREATE TABLE customer (
   LastName VARCHAR(255),
   Street VARCHAR(255),
   PostalID INT,
-  EducationID INT,
-  EmploymentID INT,
-  FOREIGN KEY (PostalID) REFERENCES city(PostalCode),
-  FOREIGN KEY (EducationID) REFERENCES education(educationID),
-  FOREIGN KEY (EmploymentID) REFERENCES Employment(EmploymentID)
+  FOREIGN KEY (PostalID) REFERENCES city(PostalCode)
 );
 
 -- Insert data into the tables
-INSERT INTO city (PostalCode, CityName) VALUES (1000, 'København');
+INSERT INTO city (PostalCode, CityName) VALUES (2300, 'København');
+INSERT INTO city (PostalCode, CityName) VALUES (2360, 'Taastrup');
+INSERT INTO city (PostalCode, CityName) VALUES (2770, 'Kastrup');
+INSERT INTO schools (schoolsName) VALUES ('Ingen');
 INSERT INTO schools (schoolsName) VALUES ('Københavns universitet');
-INSERT INTO education (educationID, educationEnd) VALUES (1, '2020-01-01');
+INSERT INTO schools (schoolsName) VALUES ('Aalborg universitet');
+INSERT INTO schools (schoolsName) VALUES ('ZBC');
+INSERT INTO jobs (JobName) VALUES ('Arbejdsløs');
 INSERT INTO jobs (JobName) VALUES ('Programmør');
-INSERT INTO Employment (EmploymentID, EmploymentStart, EmploymentEnd) VALUES (1, '2020-01-01', '2022-01-01');
-INSERT INTO customer (FirstName, LastName, Street, PostalID, EducationID, EmploymentID) VALUES ('John', 'Doe', 'johndoe street 13', 1000, 1, 1);
+INSERT INTO jobs (JobName) VALUES ('Supporter');
+
+INSERT INTO education (customerid, educationName, educationEnd) VALUES (1, 2, '2024-06-07'), (2, 3, '2024-06-29');
+INSERT INTO employment (customerid, EmploymentName, EmploymentStart, EmploymentEnd) VALUES (1, 1, '2024-06-12', '2024-06-27'), (2, 2, '2024-06-21', '2025-07-18');
+
+INSERT INTO customer (FirstName, LastName, Street, PostalID) VALUES ('John', 'Doe', 'Johndoe Street 13', '2770'), ('Jan', 'Larsen', 'Jansengade 1', '2360');

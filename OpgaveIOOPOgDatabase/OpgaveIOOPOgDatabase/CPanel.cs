@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static OpgaveIOOPOgDatabase.CRender;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace OpgaveIOOPOgDatabase
 {
