@@ -55,5 +55,4 @@ INSERT INTO jobs (JobName) VALUES ('Supporter');
 
 INSERT INTO education (customerid, educationName, educationEnd) VALUES (1, 2, '2024-06-07'), (2, 3, '2024-06-29');
 INSERT INTO employment (customerid, EmploymentName, EmploymentStart, EmploymentEnd) VALUES (1, 1, '2024-06-12', '2024-06-27'), (2, 2, '2024-06-21', '2025-07-18');
-
 INSERT INTO customer (FirstName, LastName, Street, PostalID) VALUES ('John', 'Doe', 'Johndoe Street 13', '2770'), ('Jan', 'Larsen', 'Jansengade 1', '2360');
