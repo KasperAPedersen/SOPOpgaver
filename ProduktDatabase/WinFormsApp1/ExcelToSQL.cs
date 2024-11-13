@@ -26,12 +26,12 @@ namespace WinFormsApp1
 
         private void ExcelToSQL_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         private void control_DragEnter(object sender, DragEventArgs e)
@@ -52,15 +52,21 @@ namespace WinFormsApp1
             foreach (string file in files)
             {
                 string filePath = file;
-                
+
                 List<string> fileData = CReadExcel.ReadFile(filePath);
                 FileInfo fileInfo = new FileInfo(filePath);
-                CCreateSQL.WriteToFile($"{fileInfo.DirectoryName}\\CreateTable.sql", CCreateSQL.JsonToSqlTables(fileData[1]));
-                CCreateSQL.WriteToFile($"{fileInfo.DirectoryName}\\DataInsert.sql", CCreateSQL.JSONToSQLData(fileData[1]));
+                CCreateSQL.WriteToFile($"{fileInfo.DirectoryName}\\SQL\\{Path.GetFileNameWithoutExtension(filePath)}\\{Path.GetFileNameWithoutExtension(filePath)}_table.sql", CCreateSQL.JsonToSqlTables(fileData[1]));
+                CCreateSQL.WriteToFile($"{fileInfo.DirectoryName}\\SQL\\{Path.GetFileNameWithoutExtension(filePath)}\\{Path.GetFileNameWithoutExtension(filePath)}_insert.sql", CCreateSQL.JSONToSQLData(fileData[1]));
             }
+            this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
-    
+
     public static class CReadExcel
     {
         internal static List<string> ReadFile(string filePath)
@@ -124,12 +130,18 @@ namespace WinFormsApp1
     {
         private static void CreateFile(string filePath)
         {
+            if (!Directory.Exists(filePath))
+            {
+                FileInfo fileInfo = new FileInfo(filePath);
+                Directory.CreateDirectory(fileInfo.DirectoryName);
+            }
+            
             if (File.Exists(filePath))
             {
                 Console.WriteLine("File already exists.");
                 return;
             }
-
+            
             File.Create(filePath).Close();
         }
 

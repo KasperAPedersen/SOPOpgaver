@@ -3,7 +3,7 @@ using MetroFramework.Forms;
 
 namespace WinFormsApp1;
 
-partial class Form1
+partial class ProduktDatabase
 {
     /// <summary>
     ///  Required designer variable.
@@ -103,7 +103,7 @@ partial class Form1
         Controls.Add(button3);
         Controls.Add(button2);
         Controls.Add(button1);
-        Name = "Form1";
+        Name = "ProduktDatabase";
         Text = "Produkt Database";
         Load += Form1_Load;
         ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

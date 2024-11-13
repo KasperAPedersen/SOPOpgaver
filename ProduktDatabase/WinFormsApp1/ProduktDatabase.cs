@@ -10,13 +10,13 @@ using MetroFramework;
 using MetroFramework.Controls;
 using MetroFramework.Forms;
 
-public partial class Form1 : MetroForm
+public partial class ProduktDatabase : MetroForm
 {
     private MySqlDataAdapter adapter;
     private DataTable dataTable;
     private static readonly string Conn = $"SERVER=localhost;DATABASE=cbz;UID=root;PWD=;Convert Zero Datetime=True;Pooling=True;";
 
-    public Form1()
+    public ProduktDatabase()
     {
         InitializeComponent();
         LoadDataFromDatabase();

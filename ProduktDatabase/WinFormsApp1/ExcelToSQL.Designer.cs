@@ -31,31 +31,47 @@ namespace WinFormsApp1
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label1 = new Label();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.AllowDrop = true;
-            panel1.Location = new Point(6, 53);
+            panel1.BackColor = Color.FromArgb(224, 224, 224);
+            panel1.Location = new Point(6, 76);
             panel1.Name = "panel1";
-            panel1.Size = new Size(329, 163);
+            panel1.Size = new Size(232, 141);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.White;
+            label1.Location = new Point(6, 58);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 15);
+            label1.TabIndex = 4;
+            label1.Text = "Insert Excel file";
+            label1.Click += label1_Click;
             // 
             // ExcelToSQL
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(340, 239);
+            ClientSize = new Size(246, 236);
+            Controls.Add(label1);
             Controls.Add(panel1);
             Name = "ExcelToSQL";
             Text = "ExcelToSQL";
             Load += ExcelToSQL_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Panel panel1;
+        private Label label1;
     }
 }
