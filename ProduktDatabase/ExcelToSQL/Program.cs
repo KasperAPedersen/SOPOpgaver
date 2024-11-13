@@ -43,15 +43,14 @@ class Program
         try
         {
             Console.Clear();
-            string pathBase = "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\ExcelToSQL";
+            string pathBase = @"C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\ExcelToSQL";
+            
             Console.WriteLine("Enter the name of the Excel file (without extension): ");
             string pathExcel = $"{pathBase}\\{Console.ReadLine()}.xlsx";
-            string pathCreateTable = $"{pathBase}\\CreateTable.sql";
-            string pathSQLData = $"{pathBase}\\DataInsert.sql";
 
             List<string> fileData = CReadExcel.ReadFile(pathExcel);
-            CCreateSQL.WriteToFile(pathCreateTable, CCreateSQL.JSONToSQLTables(fileData[1]));
-            CCreateSQL.WriteToFile(pathSQLData, CCreateSQL.JSONToSQLData(fileData[1]));
+            CCreateSQL.WriteToFile($"{pathBase}\\CreateTable.sql", CCreateSQL.JsonToSqlTables(fileData[1]));
+            CCreateSQL.WriteToFile($"{pathBase}\\DataInsert.sql", CCreateSQL.JSONToSQLData(fileData[1]));
         }
         catch (Exception e)
         {

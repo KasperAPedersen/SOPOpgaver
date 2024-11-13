@@ -46,7 +46,7 @@ public static class CReadExcel
 
         var jsonData = JsonConvert.SerializeObject(excelData, Formatting.Indented);
         var jsonHeaders = JsonConvert.SerializeObject(headers);
-        return new List<string> {jsonHeaders, jsonData };
+        return [jsonHeaders, jsonData];
     }
 
     private static string GetCellValue(SpreadsheetDocument doc, Cell cell)
@@ -56,7 +56,7 @@ public static class CReadExcel
         
         if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
         {
-            return stringTablePart.SharedStringTable.ChildElements[Int32.Parse(value)].InnerText;
+            return stringTablePart.SharedStringTable.ChildElements[int.Parse(value)].InnerText;
         }
         return value;
     }

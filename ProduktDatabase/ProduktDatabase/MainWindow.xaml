@@ -10,6 +10,6 @@
         <Button Content="Ny produkt" HorizontalAlignment="Left" Height="40" Margin="10,10,0,0" VerticalAlignment="Top" Width="115" Click="Button_Click"/>
         <Button Content="Slet produkt" HorizontalAlignment="Left" Height="40" Margin="250,10,0,0" VerticalAlignment="Top" Width="115" Click="Button_Click_2"/>
         <Button Content="Rediger produkt" HorizontalAlignment="Left" Height="40" Margin="130,10,0,0" VerticalAlignment="Top" Width="115" Click="Button_Click_1"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Center" Height="369" Margin="0,55,0,0" VerticalAlignment="Top" Width="780" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged_1"/>
+        <DataGrid Name="myDataGrid" HorizontalAlignment="Center" Height="369" Margin="0,55,0,0" VerticalAlignment="Top" Width="780" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged_1"/>
     </Grid>
 </Window>

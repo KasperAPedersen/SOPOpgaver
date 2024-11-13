@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 public static class CCreateSQL
 {
-    internal static void CreateFile(string filePath)
+    private static void CreateFile(string filePath)
     {
         if(File.Exists(filePath))
         {
@@ -25,7 +25,7 @@ public static class CCreateSQL
         File.WriteAllText(filePath, data);
     }
     
-    internal static string JSONToSQLTables(string json)
+    internal static string JsonToSqlTables(string json)
     {
         List<Dictionary<string, string>> data = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(json);
         Dictionary<string, string> tableData = data.First().ToDictionary(d => d.Key.Replace(' ', '_'), d => GetValueType(d.Value));
