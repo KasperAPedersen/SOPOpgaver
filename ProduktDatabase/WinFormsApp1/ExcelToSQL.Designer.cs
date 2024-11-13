@@ -36,9 +36,9 @@ namespace WinFormsApp1
             // panel1
             // 
             panel1.AllowDrop = true;
-            panel1.Location = new Point(23, 63);
+            panel1.Location = new Point(6, 53);
             panel1.Name = "panel1";
-            panel1.Size = new Size(262, 163);
+            panel1.Size = new Size(329, 163);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -46,7 +46,7 @@ namespace WinFormsApp1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(340, 450);
+            ClientSize = new Size(340, 239);
             Controls.Add(panel1);
             Name = "ExcelToSQL";
             Text = "ExcelToSQL";
