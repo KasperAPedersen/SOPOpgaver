@@ -36,12 +36,13 @@ partial class Form1
         button2 = new MetroButton();
         button3 = new MetroButton();
         dataGridView1 = new DataGridView();
+        metroButton1 = new MetroButton();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         SuspendLayout();
         // 
         // button1
         // 
-        button1.Location = new Point(422, 26);
+        button1.Location = new Point(303, 26);
         button1.Name = "button1";
         button1.Size = new Size(113, 49);
         button1.TabIndex = 4;
@@ -51,7 +52,7 @@ partial class Form1
         // 
         // button2
         // 
-        button2.Location = new Point(541, 26);
+        button2.Location = new Point(422, 26);
         button2.Name = "button2";
         button2.Size = new Size(113, 49);
         button2.TabIndex = 4;
@@ -61,7 +62,7 @@ partial class Form1
         // 
         // button3
         // 
-        button3.Location = new Point(660, 26);
+        button3.Location = new Point(541, 26);
         button3.Name = "button3";
         button3.Size = new Size(113, 49);
         button3.TabIndex = 4;
@@ -82,11 +83,22 @@ partial class Form1
         dataGridView1.TabIndex = 3;
         dataGridView1.CellContentClick += dataGridView1_CellContentClick;
         // 
+        // metroButton1
+        // 
+        metroButton1.Location = new Point(660, 26);
+        metroButton1.Name = "metroButton1";
+        metroButton1.Size = new Size(113, 49);
+        metroButton1.TabIndex = 5;
+        metroButton1.Text = "Excel";
+        metroButton1.UseSelectable = true;
+        metroButton1.Click += metroButton1_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(783, 450);
+        Controls.Add(metroButton1);
         Controls.Add(dataGridView1);
         Controls.Add(button3);
         Controls.Add(button2);
@@ -104,4 +116,5 @@ partial class Form1
     private DataGridView dataGridView1;
     private MetroButton button2;
     private MetroButton button3;
+    private MetroButton metroButton1;
 }

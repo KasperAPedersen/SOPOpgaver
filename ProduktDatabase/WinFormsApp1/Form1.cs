@@ -24,13 +24,13 @@ public partial class Form1 : MetroForm
 
     private void Form1_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
 
-        
+
     }
 
     internal void LoadDataFromDatabase()
@@ -60,7 +60,7 @@ public partial class Form1 : MetroForm
         {
             conn.Open();
             var row = dataGridView1.Rows[dataGridView1.Rows.Count - 2];
-            
+
             string query = "INSERT INTO tablename (Producent_navn, Producent_adresse, Vare_nummer, Vare_tekst, Kategori, Materiale, Lager_beholdning) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, @Value6, @Value7)";
 
             using (MySqlCommand command = new MySqlCommand(query, conn))
@@ -159,8 +159,8 @@ public partial class Form1 : MetroForm
 
     private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
     {
-        
-            
+
+
     }
 
     private void AddNewRowToDatabase(DataGridViewRow row)
@@ -199,5 +199,11 @@ public partial class Form1 : MetroForm
         {
             MessageBox.Show("Error adding row to database: " + ex.Message);
         }
+    }
+
+    private void metroButton1_Click(object sender, EventArgs e)
+    {
+        ExcelToSQL excelToSQL = new ExcelToSQL();
+        excelToSQL.Show();
     }
 }
