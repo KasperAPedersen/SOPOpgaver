@@ -4,8 +4,13 @@ namespace WinFormsApp1;
 
 using MySql.Data.MySqlClient;
 using System.Data.Common;
+using System.Transactions;
+using System.Windows.Forms;
+using MetroFramework;
+using MetroFramework.Controls;
+using MetroFramework.Forms;
 
-public partial class Form1 : Form
+public partial class Form1 : MetroForm
 {
     private MySqlDataAdapter adapter;
     private DataTable dataTable;
@@ -25,6 +30,7 @@ public partial class Form1 : Form
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
 
+        
     }
 
     internal void LoadDataFromDatabase()
@@ -49,8 +55,29 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        Ny ny = new Ny();
-        ny.Show();
+        // add
+        using (MySqlConnection conn = new MySqlConnection(Conn))
+        {
+            conn.Open();
+            var row = dataGridView1.Rows[dataGridView1.Rows.Count - 2];
+            
+            string query = "INSERT INTO tablename (Producent_navn, Producent_adresse, Vare_nummer, Vare_tekst, Kategori, Materiale, Lager_beholdning) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, @Value6, @Value7)";
+
+            using (MySqlCommand command = new MySqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@Value1", row.Cells["Producent_navn"].Value ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Value2", row.Cells["Producent_adresse"].Value ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Value3", row.Cells["Vare_nummer"].Value ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Value4", row.Cells["Vare_tekst"].Value ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Value5", row.Cells["Kategori"].Value ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Value6", row.Cells["Materiale"].Value ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Value7", row.Cells["Lager_beholdning"].Value ?? DBNull.Value);
+                command.ExecuteNonQuery(); // Execute insert command
+            }
+        }
+
+        MessageBox.Show("Row added su");
+        LoadDataFromDatabase();
     }
 
     private void button3_Click(object sender, EventArgs e)
@@ -127,6 +154,50 @@ public partial class Form1 : Form
         catch (Exception ex)
         {
             MessageBox.Show("Error deleting record: " + ex.Message);
+        }
+    }
+
+    private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
+    {
+        
+            
+    }
+
+    private void AddNewRowToDatabase(DataGridViewRow row)
+    {
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(Conn))
+            {
+                connection.Open();
+                string insertQuery = "INSERT INTO tablename (Producent_navn, Producent_adresse, Vare_nummer, Vare_tekst, Kategori, Materiale, Lager_beholdning) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, @Value6, @Value7)";
+                using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
+                {
+                    // Add parameters for each column in your table
+                    command.Parameters.AddWithValue("@Value1", row.Cells["Producent_navn"].Value ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Value2", row.Cells["Producent_adresse"].Value ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Value3", row.Cells["Vare_nummer"].Value ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Value4", row.Cells["Vare_tekst"].Value ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Value5", row.Cells["Kategori"].Value ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Value6", row.Cells["Materiale"].Value ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Value7", row.Cells["Lager_beholdning"].Value ?? DBNull.Value);
+                    // Add more parameters as needed for additional columns
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Row added successfully to the database!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add row to the database.");
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error adding row to database: " + ex.Message);
         }
     }
 }

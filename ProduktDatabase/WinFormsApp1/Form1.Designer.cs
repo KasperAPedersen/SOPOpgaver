@@ -1,4 +1,7 @@
-﻿namespace WinFormsApp1;
+﻿using MetroFramework.Controls;
+using MetroFramework.Forms;
+
+namespace WinFormsApp1;
 
 partial class Form1
 {
@@ -29,49 +32,53 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        button1 = new Button();
-        button2 = new Button();
-        button3 = new Button();
+        button1 = new MetroButton();
+        button2 = new MetroButton();
+        button3 = new MetroButton();
         dataGridView1 = new DataGridView();
         ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
         SuspendLayout();
         // 
         // button1
         // 
-        button1.Location = new Point(12, 12);
+        button1.Location = new Point(422, 26);
         button1.Name = "button1";
-        button1.Size = new Size(113, 58);
-        button1.TabIndex = 0;
-        button1.Text = "Ny";
-        button1.UseVisualStyleBackColor = true;
+        button1.Size = new Size(113, 49);
+        button1.TabIndex = 4;
+        button1.Text = "Tilføj";
+        button1.UseSelectable = true;
         button1.Click += button1_Click;
         // 
         // button2
         // 
-        button2.Location = new Point(131, 12);
+        button2.Location = new Point(541, 26);
         button2.Name = "button2";
-        button2.Size = new Size(113, 58);
-        button2.TabIndex = 1;
+        button2.Size = new Size(113, 49);
+        button2.TabIndex = 4;
         button2.Text = "Rediger";
-        button2.UseVisualStyleBackColor = true;
+        button2.UseSelectable = true;
         button2.Click += button2_Click;
         // 
         // button3
         // 
-        button3.Location = new Point(250, 12);
+        button3.Location = new Point(660, 26);
         button3.Name = "button3";
-        button3.Size = new Size(113, 58);
-        button3.TabIndex = 2;
+        button3.Size = new Size(113, 49);
+        button3.TabIndex = 4;
         button3.Text = "Slet";
-        button3.UseVisualStyleBackColor = true;
+        button3.UseSelectable = true;
         button3.Click += button3_Click;
         // 
         // dataGridView1
         // 
+        dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        dataGridView1.BackgroundColor = Color.White;
         dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        dataGridView1.Location = new Point(12, 82);
+        dataGridView1.Location = new Point(20, 81);
+        dataGridView1.MultiSelect = false;
         dataGridView1.Name = "dataGridView1";
-        dataGridView1.Size = new Size(761, 356);
+        dataGridView1.Size = new Size(753, 356);
         dataGridView1.TabIndex = 3;
         dataGridView1.CellContentClick += dataGridView1_CellContentClick;
         // 
@@ -93,8 +100,8 @@ partial class Form1
 
     #endregion
 
-    private Button button1;
-    private Button button2;
-    private Button button3;
+    private MetroButton button1;
     private DataGridView dataGridView1;
+    private MetroButton button2;
+    private MetroButton button3;
 }
