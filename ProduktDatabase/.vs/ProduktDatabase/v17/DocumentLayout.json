@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1EDA5386-8916-413A-9A88-9ACCF3C47D50}|ProduktDatabase\\ProduktDatabase.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\produktdatabase\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1EDA5386-8916-413A-9A88-9ACCF3C47D50}|ProduktDatabase\\ProduktDatabase.csproj|solutionrelative:produktdatabase\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EDA5386-8916-413A-9A88-9ACCF3C47D50}|ProduktDatabase\\ProduktDatabase.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\produktdatabase\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1EDA5386-8916-413A-9A88-9ACCF3C47D50}|ProduktDatabase\\ProduktDatabase.csproj|solutionrelative:produktdatabase\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\winformsapp1\\ny.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\ny.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\winformsapp1\\ny.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\ny.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,27 +58,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\ProduktDatabase\\App.xaml",
-              "RelativeDocumentMoniker": "ProduktDatabase\\App.xaml",
-              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\ProduktDatabase\\App.xaml",
-              "RelativeToolTip": "ProduktDatabase\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-11T12:36:41.691Z",
+              "DocumentIndex": 2,
+              "Title": "Ny.cs",
+              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Ny.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\Ny.cs",
+              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Ny.cs",
+              "RelativeToolTip": "WinFormsApp1\\Ny.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAvwCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T08:44:09.71Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Ny.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Ny.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\Ny.cs",
+              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Ny.cs [Design]",
+              "RelativeToolTip": "WinFormsApp1\\Ny.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T08:42:15.232Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\ProduktDatabase\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "ProduktDatabase\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\ProduktDatabase\\MainWindow.xaml*",
-              "RelativeToolTip": "ProduktDatabase\\MainWindow.xaml*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-11T12:29:51.178Z",
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Form1.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\Form1.cs",
+              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Form1.cs",
+              "RelativeToolTip": "WinFormsApp1\\Form1.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAswDYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T08:34:42.953Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Form1.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\Form1.cs",
+              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\Form1.cs [Design]",
+              "RelativeToolTip": "WinFormsApp1\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T08:32:12.551Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
