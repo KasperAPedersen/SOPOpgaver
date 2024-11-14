@@ -57,16 +57,17 @@ namespace Downloaderen
         private void button2_Click(object sender, EventArgs e)
         {
             // del btn
-            var id = int.Parse(dataGridView1.CurrentRow.Cells["ID"].Value.ToString());
+            var url = dataGridView1.CurrentRow.Cells["url"].Value.ToString();
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string deleteQuery = "DELETE FROM downloads WHERE ID = @ID";
+                    string deleteQuery = "DELETE FROM downloads WHERE url = @url AND user_id = @ID LIMIT 1";
                     using (MySqlCommand command = new MySqlCommand(deleteQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@ID", id);
+                        command.Parameters.AddWithValue("@ID", userId);
+                        command.Parameters.AddWithValue("@url", url);
 
                         // Confirm deletion with the user
                         if (MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -74,8 +75,6 @@ namespace Downloaderen
                             int rowsAffected = command.ExecuteNonQuery();
                             if (rowsAffected > 0)
                             {
-                                MessageBox.Show("Record deleted successfully!");
-                                // Refresh the DataGridView
                                 LoadData();
                             }
                             else
@@ -99,11 +98,13 @@ namespace Downloaderen
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    adapter = new MySqlDataAdapter($"SELECT id, url FROM downloads WHERE user_id = {userId}", connection);
+                    adapter = new MySqlDataAdapter($"SELECT url FROM downloads WHERE user_id = {userId}", connection);
                     MySqlCommandBuilder builder = new MySqlCommandBuilder(adapter);
                     dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView1.DataSource = dataTable;
+                        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto resize columns
+        
                 }
             }
             catch (Exception ex)
