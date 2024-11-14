@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\downloaderen\\downloaderen\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|solutionrelative:downloaderen\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\downloaderen\\downloaderen\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|solutionrelative:downloaderen\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\downloaderen\\downloaderen\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|solutionrelative:downloaderen\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\downloaderen\\downloaderen\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75D8A6C5-000B-47ED-9418-79BDF92FCFA3}|Downloaderen\\Downloaderen.csproj|solutionrelative:downloaderen\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,27 +50,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Form1.cs",
-              "RelativeDocumentMoniker": "Downloaderen\\Form1.cs",
-              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Form1.cs",
-              "RelativeToolTip": "Downloaderen\\Form1.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAuwBkAAAATAAAA",
+              "DocumentIndex": 1,
+              "Title": "Main.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Main.Designer.cs",
+              "RelativeDocumentMoniker": "Downloaderen\\Main.Designer.cs",
+              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Main.Designer.cs",
+              "RelativeToolTip": "Downloaderen\\Main.Designer.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAEwCQAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T07:04:22.486Z",
+              "WhenOpened": "2024-11-14T08:56:14.164Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Form1.cs",
-              "RelativeDocumentMoniker": "Downloaderen\\Form1.cs",
-              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Form1.cs [Design]",
-              "RelativeToolTip": "Downloaderen\\Form1.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "Main.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Main.cs",
+              "RelativeDocumentMoniker": "Downloaderen\\Main.cs",
+              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\Downloaderen\\Downloaderen\\Main.cs [Design]*",
+              "RelativeToolTip": "Downloaderen\\Main.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T06:52:00.676Z",
+              "WhenOpened": "2024-11-14T08:55:39.778Z",
               "EditorCaption": " [Design]"
             }
           ]

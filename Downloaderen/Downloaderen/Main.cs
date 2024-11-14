@@ -3,9 +3,15 @@ namespace Downloaderen;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
 using System.Net;
+using System.Diagnostics;
+using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
 
 public partial class Main : MetroForm
 {
+    private string connectionString =
+        $"SERVER=localhost;DATABASE=downloaderen;UID=root;PWD=;Convert Zero Datetime=True;Pooling=True;";
+    
     public Main()
     {
         InitializeComponent();
@@ -16,40 +22,118 @@ public partial class Main : MetroForm
 
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    private void button3_Click(object sender, EventArgs e)
     {
-        new Manage().Show();
+        string username = textBox1.Text;
+        string password = textBox2.Text;
+
+        var (loginResult, userId) = ValidateUser(username, password);
+        if (loginResult == "Success")
+        {
+            MessageBox.Show("Login Success");
+            // Save the userId as needed
+            new Downloader(userId).Show();
+            this.Hide();
+        }
+        else
+        {
+            MessageBox.Show(loginResult);
+        }
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void metroButton1_Click(object sender, EventArgs e)
     {
-        DownloadFile("https://dl.google.com/chrome/install/latest/chrome_installer.exe");
-        /*Manage manageForm = new Manage();
-        foreach (DataGridViewRow row in manageForm.dataGridView1.Rows)
+        // Register btn
+        string username = textBox1.Text;
+        string password = textBox2.Text;
+
+        bool isRegistered = RegisterUser(username, password);
+        if (isRegistered)
         {
-            if (row.Cells[0].Value != null)
-            {
-                string url = row.Cells[0].Value.ToString();
-                DownloadFile("https://dl.google.com/chrome/install/latest/chrome_installer.exe");
-            }
-        }*/
+            MessageBox.Show("User registered successfully");
+        }
+        else
+        {
+            MessageBox.Show("User registration failed");
+        }
     }
     
-    private void DownloadFile(string url)
+    public bool RegisterUser(string username, string password)
     {
-        try
+        byte[] passwordHash, salt;
+        PasswordHelper.CreatePasswordHash(password, out passwordHash, out salt);
+
+        using (MySqlConnection conn = new MySqlConnection(connectionString))
         {
-            using (WebClient client = new WebClient())
+            conn.Open();
+            using (MySqlCommand cmd = new MySqlCommand("INSERT INTO users (Username, PasswordHash, Salt) VALUES (@Username, @PasswordHash, @Salt)", conn))
             {
-                string fileName = Path.GetFileName(url);
-                string downloadPath = Path.Combine("C:\\YourDownloadDirectory", fileName); // Specify your directory here
-                client.DownloadFile(url, downloadPath);
-                MessageBox.Show($"Downloaded {fileName} successfully.");
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@PasswordHash", passwordHash);
+                cmd.Parameters.AddWithValue("@Salt", salt);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                return rowsAffected > 0;
             }
         }
-        catch (Exception ex)
+    }
+    
+    private (string, int) ValidateUser(string username, string password)
+    {
+        using (MySqlConnection conn = new MySqlConnection(connectionString))
         {
-            MessageBox.Show($"Error downloading file: {ex.Message}");
+            conn.Open();
+            using (MySqlCommand cmd = new MySqlCommand("SELECT Id, PasswordHash, Salt FROM users WHERE Username = @Username", conn))
+            {
+                cmd.Parameters.AddWithValue("@Username", username);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int userId = reader.GetInt32("Id");
+                        byte[] storedHash = (byte[])reader["PasswordHash"];
+                        byte[] storedSalt = (byte[])reader["Salt"];
+                        byte[] hash = HashPassword(password, storedSalt);
+
+                        if (storedHash.SequenceEqual(hash))
+                        {
+                            return ("Success", userId);
+                        }
+                        else
+                        {
+                            return ("Invalid password.", -1);
+                        }
+                    }
+                    else
+                    {
+                        return ("Username not found.", -1);
+                    }
+                }
+            }
+        }
+    }
+
+    private byte[] HashPassword(string password, byte[] salt)
+    {
+        using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, 10000))
+        {
+            return rfc2898.GetBytes(64);
+        }
+    }
+}
+
+public static class PasswordHelper
+{
+    public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] salt)
+    {
+        using (var rng = new RNGCryptoServiceProvider())
+        {
+            salt = new byte[16];
+            rng.GetBytes(salt);
+        }
+
+        using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, 10000))
+        {
+            passwordHash = rfc2898.GetBytes(64);
         }
     }
 }

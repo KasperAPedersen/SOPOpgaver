@@ -1,5 +1,9 @@
 ﻿namespace Downloaderen;
 
+using MetroFramework.Controls;
+using MetroFramework.Forms;
+using MetroFramework;
+
 partial class Main
 {
     /// <summary>
@@ -29,45 +33,98 @@ partial class Main
     /// </summary>
     private void InitializeComponent()
     {
-        button1 = new Button();
-        button2 = new Button();
+        label2 = new MetroLabel();
+        textBox1 = new TextBox();
+        textBox2 = new TextBox();
+        metroLabel1 = new MetroLabel();
+        button3 = new MetroButton();
+        metroButton1 = new MetroButton();
         SuspendLayout();
         // 
-        // button1
+        // label2
         // 
-        button1.Location = new Point(8, 74);
-        button1.Name = "button1";
-        button1.Size = new Size(234, 67);
-        button1.TabIndex = 0;
-        button1.Text = "Download";
-        button1.UseVisualStyleBackColor = true;
-        button1.Click += button1_Click;
+        label2.AutoSize = true;
+        label2.Location = new Point(7, 71);
+        label2.Name = "label2";
+        label2.Size = new Size(68, 19);
+        label2.TabIndex = 5;
+        label2.Text = "Username";
         // 
-        // button2
+        // textBox1
         // 
-        button2.Location = new Point(8, 147);
-        button2.Name = "button2";
-        button2.Size = new Size(234, 67);
-        button2.TabIndex = 1;
-        button2.Text = "Manage";
-        button2.UseVisualStyleBackColor = true;
-        button2.Click += button2_Click;
+        textBox1.BackColor = SystemColors.Window;
+        textBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        textBox1.Location = new Point(7, 93);
+        textBox1.Name = "textBox1";
+        textBox1.Size = new Size(178, 33);
+        textBox1.TabIndex = 6;
         // 
-        // Form1
+        // textBox2
+        // 
+        textBox2.BackColor = SystemColors.Window;
+        textBox2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        textBox2.Location = new Point(7, 158);
+        textBox2.Name = "textBox2";
+        textBox2.Size = new Size(178, 33);
+        textBox2.TabIndex = 8;
+        // 
+        // metroLabel1
+        // 
+        metroLabel1.AutoSize = true;
+        metroLabel1.Location = new Point(7, 136);
+        metroLabel1.Name = "metroLabel1";
+        metroLabel1.Size = new Size(63, 19);
+        metroLabel1.TabIndex = 7;
+        metroLabel1.Text = "Password";
+        // 
+        // button3
+        // 
+        button3.Location = new Point(7, 202);
+        button3.Name = "button3";
+        button3.Size = new Size(178, 52);
+        button3.TabIndex = 9;
+        button3.Text = "Login";
+        button3.UseSelectable = true;
+        button3.UseVisualStyleBackColor = true;
+        button3.Click += button3_Click;
+        // 
+        // metroButton1
+        // 
+        metroButton1.Location = new Point(7, 257);
+        metroButton1.Name = "metroButton1";
+        metroButton1.Size = new Size(178, 52);
+        metroButton1.TabIndex = 10;
+        metroButton1.Text = "Register";
+        metroButton1.UseSelectable = true;
+        metroButton1.UseVisualStyleBackColor = true;
+        metroButton1.Click += metroButton1_Click;
+        // 
+        // Main
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(249, 238);
-        Controls.Add(button2);
-        Controls.Add(button1);
+        ClientSize = new Size(200, 324);
+        Controls.Add(metroButton1);
+        Controls.Add(button3);
+        Controls.Add(textBox2);
+        Controls.Add(metroLabel1);
+        Controls.Add(textBox1);
+        Controls.Add(label2);
         Name = "Main";
-        Text = "Downloaderen";
+        Text = "Login";
         Load += Form1_Load;
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
 
-    private Button button1;
-    private Button button2;
+    private MetroButton button1;
+    private MetroButton button2;
+    private MetroLabel label2;
+    private TextBox textBox1;
+    private TextBox textBox2;
+    private MetroLabel metroLabel1;
+    private MetroButton button3;
+    private MetroButton metroButton1;
 }
