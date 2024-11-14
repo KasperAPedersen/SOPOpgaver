@@ -27,6 +27,19 @@ public partial class Main : MetroForm
         string username = textBox1.Text;
         string password = textBox2.Text;
 
+        
+        if (string.IsNullOrWhiteSpace(username) || username.Length < 8)
+        {
+            MessageBox.Show("Username must be at least 8 characters long.");
+            return;
+        }
+        
+        if (string.IsNullOrWhiteSpace(password) || password.Length < 8)
+        {
+            MessageBox.Show("Password must be at least 8 characters long.");
+            return;
+        }
+        
         var (loginResult, userId) = ValidateUser(username, password);
         if (loginResult == "Success")
         {

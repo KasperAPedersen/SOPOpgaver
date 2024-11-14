@@ -103,8 +103,7 @@ namespace Downloaderen
                     dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView1.DataSource = dataTable;
-                        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto resize columns
-        
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Auto resize columns
                 }
             }
             catch (Exception ex)
