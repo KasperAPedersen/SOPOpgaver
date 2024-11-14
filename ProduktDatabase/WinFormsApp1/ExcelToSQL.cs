@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MetroFramework.Controls;
-using MetroFramework.Forms;
+﻿using System.Text;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using MetroFramework.Forms;
 using Newtonsoft.Json;
 
 namespace WinFormsApp1
@@ -20,18 +11,8 @@ namespace WinFormsApp1
         public ExcelToSQL()
         {
             InitializeComponent();
-            this.panel1.DragEnter += new DragEventHandler(control_DragEnter);
-            this.panel1.DragDrop += new DragEventHandler(control_DragDrop);
-        }
-
-        private void ExcelToSQL_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            panel1.DragEnter += control_DragEnter;
+            panel1.DragDrop += control_DragDrop;
         }
 
         private void control_DragEnter(object sender, DragEventArgs e)
@@ -58,12 +39,7 @@ namespace WinFormsApp1
                 CCreateSQL.WriteToFile($"{fileInfo.DirectoryName}\\SQL\\{Path.GetFileNameWithoutExtension(filePath)}\\{Path.GetFileNameWithoutExtension(filePath)}_table.sql", CCreateSQL.JsonToSqlTables(fileData[1]));
                 CCreateSQL.WriteToFile($"{fileInfo.DirectoryName}\\SQL\\{Path.GetFileNameWithoutExtension(filePath)}\\{Path.GetFileNameWithoutExtension(filePath)}_insert.sql", CCreateSQL.JSONToSQLData(fileData[1]));
             }
-            this.Hide();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            Close();
         }
     }
 

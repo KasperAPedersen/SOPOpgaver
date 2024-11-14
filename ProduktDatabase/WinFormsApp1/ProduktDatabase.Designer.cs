@@ -93,7 +93,7 @@ partial class ProduktDatabase
         metroButton1.UseSelectable = true;
         metroButton1.Click += metroButton1_Click;
         // 
-        // Form1
+        // ProduktDatabase
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;

@@ -42,7 +42,6 @@ namespace WinFormsApp1
             panel1.Name = "panel1";
             panel1.Size = new Size(232, 141);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
             // 
             // label1
             // 
@@ -53,7 +52,6 @@ namespace WinFormsApp1
             label1.Size = new Size(85, 15);
             label1.TabIndex = 4;
             label1.Text = "Insert Excel file";
-            label1.Click += label1_Click;
             // 
             // ExcelToSQL
             // 
@@ -64,7 +62,6 @@ namespace WinFormsApp1
             Controls.Add(panel1);
             Name = "ExcelToSQL";
             Text = "ExcelToSQL";
-            Load += ExcelToSQL_Load;
             ResumeLayout(false);
             PerformLayout();
         }
