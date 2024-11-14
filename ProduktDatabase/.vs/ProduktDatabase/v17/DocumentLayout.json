@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\winformsapp1\\produktdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\produktdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\zbc23kaped\\source\\repos\\sopopgaver\\produktdatabase\\winformsapp1\\produktdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{58F7D2A8-EA8C-4614-B06E-5DAD17533961}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\produktdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -47,6 +51,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ProduktDatabase.cs",
+              "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\ProduktDatabase.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\ProduktDatabase.cs",
+              "ToolTip": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\ProduktDatabase.cs",
+              "RelativeToolTip": "WinFormsApp1\\ProduktDatabase.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAAAmwD0AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-14T07:46:22.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ProduktDatabase.cs [Design]",
               "DocumentMoniker": "C:\\Users\\zbc23kaped\\source\\repos\\SOPOpgaver\\ProduktDatabase\\WinFormsApp1\\ProduktDatabase.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\ProduktDatabase.cs",

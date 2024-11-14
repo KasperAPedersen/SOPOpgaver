@@ -17,8 +17,7 @@ public partial class Main : MetroForm
 
     private void button2_Click(object sender, EventArgs e)
     {
-        // ny instance af manage form
-        // �ben manage form
+        new Manage().Show();
     }
 
     private void button1_Click(object sender, EventArgs e)
