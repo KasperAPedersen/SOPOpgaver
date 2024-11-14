@@ -3,9 +3,9 @@ namespace Downloaderen;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
 
-public partial class Form1 : MetroForm
+public partial class Main : MetroForm
 {
-    public Form1()
+    public Main()
     {
         InitializeComponent();
     }
@@ -18,7 +18,7 @@ public partial class Form1 : MetroForm
     private void button2_Click(object sender, EventArgs e)
     {
         // ny instance af manage form
-        // åben manage form
+        // ï¿½ben manage form
     }
 
     private void button1_Click(object sender, EventArgs e)
