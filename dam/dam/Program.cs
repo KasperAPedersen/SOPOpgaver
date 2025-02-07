@@ -1,30 +1,20 @@
 ﻿namespace dam;
 
-using System.Drawing;
+public struct Player(string name)
+{
+    internal string Name { get; set; } = name;
+    internal int Score { get; set; } = 0;
+}
 
-/*
-    
-    CBoard
-        - Draw board
-    CScore
-        - Draw scoreboard
-    CPlayer
-        - Draw player pieces
-        - Save player score
-    CGame
-        - Game logic 
-    
- */
 class Program
 {
     static void Main(string[] args)
     {
-        CBoard board = new CBoardBuilder()
-            .SetStartPosition(new Point(2, 1))
-            .Build();
-        
-        board.Render();
-        
-        Console.ReadKey();
+        /*Console.Write("Enter name of player 1: ");
+        string player1 = Console.ReadLine() ?? "Player 1";
+        Console.Write("Enter name of player 2: ");
+        string player2 = Console.ReadLine() ?? "Player 2";*/
+        CGame game = new ();
+        game.Start();
     }
 }
