@@ -6,15 +6,15 @@ public class CGame
     private CScoreboard scoreboard;
     private bool isPlayer1Turn;
     private List<Player> players = [];
-    
+
     public CGame(string? player1 = null, string? player2 = null)
     {
         players.Add(new Player(player1 ?? "Player 1"));
         players.Add(new Player(player2 ?? "Player 2"));
-        
+
         board = new CBoard();
         isPlayer1Turn = true;
-        
+
         scoreboard = new CScoreboard(players);
     }
 
@@ -22,6 +22,8 @@ public class CGame
     {
         while (true)
         {
+            int playerIndex = isPlayer1Turn ? 0 : 1;
+
             Console.Clear();
             board.Render();
             Console.SetCursorPosition(50, 4);
@@ -68,6 +70,15 @@ public class CGame
                 continue;
             }
 
+            // Check if the move is forward
+            if (!IsForwardMove(move.Value.fromRow, move.Value.toRow))
+            {
+                Console.SetCursorPosition(50, 7);
+                Console.WriteLine("You can only move forward. Press any key to continue...");
+                Console.ReadKey();
+                continue;
+            }
+
             // Move the piece
             board.MovePiece(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol);
 
@@ -77,7 +88,6 @@ public class CGame
                 int skippedRow = (move.Value.fromRow + move.Value.toRow) / 2;
                 int skippedCol = (move.Value.fromCol + move.Value.toCol) / 2;
 
-                int playerIndex = isPlayer1Turn ? 0 : 1;
                 players[playerIndex] = players[playerIndex] with { Score = players[playerIndex].Score + 1 };
                 board.RemovePiece(skippedRow, skippedCol);
 
@@ -131,12 +141,17 @@ public class CGame
         }
     }
 
+    private bool IsForwardMove(int fromRow, int toRow)
+    {
+        return isPlayer1Turn ? toRow > fromRow : toRow < fromRow;
+    }
+
     private (int fromRow, int fromCol, int toRow, int toCol)? ParseMove(int? initialRow = null, int? initialCol = null)
     {
-        var from = initialRow.HasValue && initialCol.HasValue 
-            ? (initialRow.Value, initialCol.Value) 
+        var from = initialRow.HasValue && initialCol.HasValue
+            ? (initialRow.Value, initialCol.Value)
             : ParsePosition(userInput("Select piece (e.g., A3): "));
-        
+
         var to = ParsePosition(userInput("Select destination (e.g., A3): "));
 
         if (from == null || to == null)
@@ -155,12 +170,12 @@ public class CGame
         do
         {
             tmp = Console.ReadLine()?.ToUpper();
-            
+
             if (!(tmp == null || tmp.Length != 2 || tmp[0] < 'A' || tmp[0] > 'H' || tmp[1] < '1' || tmp[1] > '8'))
             {
                 break;
             }
-            
+
             Console.SetCursorPosition(50, 7);
             Console.WriteLine("Invalid input. Please enter a valid square (e.g., A3).");
             Console.SetCursorPosition(50, 5);

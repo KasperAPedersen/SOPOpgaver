@@ -84,7 +84,7 @@ public class CBoard
         return false;
     }
     
-    public bool HasPossibleSkipMove(int row, int col, CBoard.SquareState owner)
+    public bool HasPossibleSkipMove(int row, int col, SquareState owner)
     {
         // Check all possible skip directions
         int[][] directions = new int[][]
@@ -127,7 +127,7 @@ public class CBoard
     public void Render()
     {
         Console.WriteLine("  A B C D E F G H");
-        for (int row = 0; row < BoardSize; row++)
+        for (int row = BoardSize - 1; row >= 0; row--)
         {
             Console.Write($"{row + 1} ");
             for (int col = 0; col < BoardSize; col++)
