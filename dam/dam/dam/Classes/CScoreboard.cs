@@ -30,8 +30,5 @@ public class CScoreboard : IScoreboard
         Console.WriteLine("└" + new string('─', width - 2) + "┘");
     }
     
-    public List<CPlayer> GetPlayers()
-    {
-        return players;
-    }
+    public List<CPlayer> GetPlayers() => players;
 }

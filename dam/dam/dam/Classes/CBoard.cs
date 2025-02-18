@@ -71,9 +71,7 @@ public class CBoard : IBoard
 
             // Promote to king if reaching the opposite end
             if ((piece.PieceOwner == Owner.Player1 && toRow == BoardSize - 1) || (piece.PieceOwner == Owner.Player2 && toRow == 0))
-            {
                 piece.PromoteToKing();
-            }
 
             board[toRow, toCol].Add(piece);
 
