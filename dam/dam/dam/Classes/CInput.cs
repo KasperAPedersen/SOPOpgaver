@@ -3,10 +3,12 @@
 public class CInput : IInput
 {
     private readonly IStatus _status;
+    private readonly IRender _render;
     
-    public CInput(IStatus status)
+    public CInput(IStatus status, IRender render)
     {
         _status = status;
+        _render = render;
     }
     
     public (int fromRow, int fromCol, int toRow, int toCol)? ParseMove(int? initialRow = null, int? initialCol = null)
@@ -18,11 +20,7 @@ public class CInput : IInput
         // Make the selected piece blink
         if (from != null)
         {
-            // get the position f the selected piece
-            Console.SetCursorPosition(from.Value.col, from.Value.row);
-            Console.BackgroundColor = ConsoleColor.DarkGray;
-            Console.Write("  ");
-            Console.BackgroundColor = ConsoleColor.Black;
+            _render.RenderSelectedPiece(from.Value.row, from.Value.col);
         }
         
         var to = ParsePosition(UserInput("Select destination (e.g., A3): "));

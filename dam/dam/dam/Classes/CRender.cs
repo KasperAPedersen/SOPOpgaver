@@ -42,4 +42,10 @@ public class CRender : IRender
         }
         Console.WriteLine("  A B C D E F G H");
     }
+
+    public void RenderSelectedPiece(int row, int col)
+    {
+        Console.SetCursorPosition(Position.X + 2 * col + 2, Position.Y + _board.Size - row);
+        Console.Write("\u001b[38;5;50m\u001b[5mO \u001b[0m");
+    }
 }
