@@ -1,6 +1,6 @@
 ﻿namespace dam;
 
-public class CBoard
+public class CBoard : IBoard
 {
     private const int BoardSize = 8;
     private List<CPiece>[,] board;
@@ -13,7 +13,7 @@ public class CBoard
 
     public int Size => BoardSize;
     
-    private void InitializeBoard()
+    public void InitializeBoard()
     {
         for (int row = 0; row < BoardSize; row++)
         {
@@ -21,9 +21,7 @@ public class CBoard
             {
                 board[row, col] = new List<CPiece>();
                 if ((row + col) % 2 != 0) // only use dark squares
-                {
                     continue;
-                }
 
                 if (row < 3) // Add player 1 pieces
                 {
@@ -40,14 +38,11 @@ public class CBoard
     public Owner? GetSquareOwner(int row, int col)
     {
         if (row < 0 || row >= BoardSize || col < 0 || col >= BoardSize)
-        {
             return null;
-        }
 
         if (board[row, col].Count == 0)
-        {
             return null;
-        }
+        
         return board[row, col].Last().PieceOwner;
     }
 
@@ -64,9 +59,7 @@ public class CBoard
     public void RemovePiece(int row, int col)
     {
         if (board[row, col].Count > 0)
-        {
             board[row, col].RemoveAt(board[row, col].Count - 1);
-        }
     }
     
     public void MovePiece(int fromRow, int fromCol, int toRow, int toCol)
@@ -77,11 +70,7 @@ public class CBoard
             board[fromRow, fromCol].RemoveAt(board[fromRow, fromCol].Count - 1);
 
             // Promote to king if reaching the opposite end
-            if (piece.PieceOwner == Owner.Player1 && toRow == BoardSize - 1)
-            {
-                piece.PromoteToKing();
-            }
-            else if (piece.PieceOwner == Owner.Player2 && toRow == 0)
+            if ((piece.PieceOwner == Owner.Player1 && toRow == BoardSize - 1) || (piece.PieceOwner == Owner.Player2 && toRow == 0))
             {
                 piece.PromoteToKing();
             }

@@ -1,10 +1,10 @@
 ﻿namespace dam;
 
-public class CMove
+public class CMove : IMove
 {
-    private readonly CBoard board;
+    private readonly IBoard board;
 
-    public CMove(CBoard board)
+    public CMove(IBoard board)
     {
         this.board = board;
     }
@@ -29,11 +29,8 @@ public class CMove
 
             if (middleSquareOwner.HasValue && middleSquareOwner.Value != player)
             {
-                // Check if the destination square is empty
-                if (board.IsSquareEmpty(toRow, toCol))
-                {
+                if (board.IsSquareEmpty(toRow, toCol)) // Check if the destination square is empty
                     return true;
-                }
             }
         }
         return false;
@@ -41,11 +38,8 @@ public class CMove
     
     public bool HasPossibleSkipMove(int row, int col, Owner owner)
     {
-        // Check if the piece is on the second last row
-        if (row == 1 || row == board.Size - 2)
-        {
+        if (row == 1 || row == board.Size - 2) // Check if the piece is on the second last row
             return false;
-        }
 
         // Check all possible skip directions
         int[][] directions = new int[][]
@@ -59,9 +53,7 @@ public class CMove
             int newRow = row + direction[0];
             int newCol = col + direction[1];
             if (IsValidSkipMove(row, col, newRow, newCol, owner))
-            {
                 return true;
-            }
         }
 
         return false;

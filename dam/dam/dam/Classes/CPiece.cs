@@ -12,7 +12,7 @@ public enum Owner
     Player2
 }
 
-public class CPiece
+public class CPiece : IPiece
 {
     public Type PieceType { get; private set; }
     public Owner PieceOwner { get; private set; }

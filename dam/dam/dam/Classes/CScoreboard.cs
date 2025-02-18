@@ -2,18 +2,18 @@
 
 using System.Drawing;
 
-public class CScoreboard
+public class CScoreboard : IScoreboard
 {
-    private List<Player> players = [];
+    private List<CPlayer> players = [];
     private int width = 20;
     private Point Position = new Point(50, 0); 
     
-    public CScoreboard(List<Player> players)
+    public CScoreboard(List<CPlayer> players)
     {
         this.players = players;
     }
 
-    internal void Render()
+    public void Render()
     {
         int currentHeight = 0;
         Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
@@ -28,5 +28,10 @@ public class CScoreboard
         
         Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
         Console.WriteLine("└" + new string('─', width - 2) + "┘");
+    }
+    
+    public List<CPlayer> GetPlayers()
+    {
+        return players;
     }
 }
