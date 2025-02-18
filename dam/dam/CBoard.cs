@@ -6,7 +6,9 @@ public class CBoard
     {
         Empty,
         Player1,
-        Player2
+        Player2,
+        Player1King,
+        Player2King
     }
 
     private const int BoardSize = 8;
@@ -27,7 +29,7 @@ public class CBoard
             for (int col = 0; col < BoardSize; col++)
             {
                 board[row, col] = new List<SquareState>();
-                if ((row + col) % 2 == 0) // only use dark squares
+                if ((row + col) % 2 != 0) // only use dark squares
                 {
                     continue;
                 }
@@ -46,6 +48,11 @@ public class CBoard
     
     public SquareState? GetSquareOwner(int row, int col)
     {
+        if (row < 0 || row >= BoardSize || col < 0 || col >= BoardSize)
+        {
+            return null;
+        }
+
         if (board[row, col].Count == 0)
         {
             return null;
@@ -65,6 +72,7 @@ public class CBoard
         return rowDistance == 1 && colDistance == 1;
     }
     
+    
     public bool IsValidSkipMove(int fromRow, int fromCol, int toRow, int toCol, SquareState player)
     {
         int rowDistance = Math.Abs(toRow - fromRow);
@@ -78,7 +86,11 @@ public class CBoard
 
             if (middleSquareOwner.HasValue && middleSquareOwner.Value != player && middleSquareOwner.Value != SquareState.Empty)
             {
-                return true;
+                // Check if the destination square is empty
+                if (IsSquareEmpty(toRow, toCol))
+                {
+                    return true;
+                }
             }
         }
         return false;
@@ -86,6 +98,12 @@ public class CBoard
     
     public bool HasPossibleSkipMove(int row, int col, SquareState owner)
     {
+        // Check if the piece is on the second last row
+        if (row == 1 || row == BoardSize - 2)
+        {
+            return false;
+        }
+
         // Check all possible skip directions
         int[][] directions = new int[][]
         {
@@ -120,6 +138,17 @@ public class CBoard
         {
             var piece = board[fromRow, fromCol].Last();
             board[fromRow, fromCol].RemoveAt(board[fromRow, fromCol].Count - 1);
+
+            // Promote to king if reaching the opposite end
+            if (piece == SquareState.Player1 && toRow == BoardSize - 1)
+            {
+                piece = SquareState.Player1King;
+            }
+            else if (piece == SquareState.Player2 && toRow == 0)
+            {
+                piece = SquareState.Player2King;
+            }
+
             board[toRow, toCol].Add(piece);
         }
     }
@@ -132,12 +161,12 @@ public class CBoard
             Console.Write($"{row + 1} ");
             for (int col = 0; col < BoardSize; col++)
             {
-                Console.BackgroundColor = (row + col) % 2 == 0 ? ConsoleColor.White : ConsoleColor.Black;
+                Console.BackgroundColor = (row + col) % 2 != 0 ? ConsoleColor.White : ConsoleColor.Black;
                 if (board[row, col].Count > 0)
                 {
                     var piece = board[row, col].Last();
-                    Console.ForegroundColor = piece == SquareState.Player1 ? ConsoleColor.Red : ConsoleColor.Green;
-                    Console.Write($"{board[row, col].Count} ");
+                    Console.ForegroundColor = piece == SquareState.Player1 || piece == SquareState.Player1King ? ConsoleColor.Red : ConsoleColor.Green;
+                    Console.Write(piece == SquareState.Player1King || piece == SquareState.Player2King ? "K " : $"{board[row, col].Count} ");
                     Console.ResetColor();
                 }
                 else

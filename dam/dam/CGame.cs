@@ -104,22 +104,27 @@ public class CGame
 
                     // Get user input for the next skip move
                     var nextMove = ParseMove(move.Value.toRow, move.Value.toCol);
-                    if (nextMove == null)
+                    while(nextMove == null)
                     {
                         Console.SetCursorPosition(50, 7);
                         Console.WriteLine("Invalid move. Press any key to continue...");
                         Console.ReadKey();
-                        break;
+                        Console.SetCursorPosition(50, 7);
+                        Console.Write(new string(' ', Console.WindowWidth - 50)); // Clear the previous input
+                        nextMove = ParseMove(move.Value.toRow, move.Value.toCol);
                     }
 
                     // Check if the next move is a valid skip move
                     isSkipMove = board.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
-                    if (!isSkipMove)
+                    while(!isSkipMove)
                     {
                         Console.SetCursorPosition(50, 7);
                         Console.WriteLine("Invalid move. Press any key to continue...");
                         Console.ReadKey();
-                        break;
+                        Console.SetCursorPosition(50, 7);
+                        Console.Write(new string(' ', Console.WindowWidth - 50)); // Clear the previous input
+                        nextMove = ParseMove(move.Value.toRow, move.Value.toCol);
+                        isSkipMove = board.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
                     }
 
                     // Move the piece
