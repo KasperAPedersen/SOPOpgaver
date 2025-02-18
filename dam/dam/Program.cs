@@ -2,9 +2,9 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-public class Program
+class Program
 {
-    public static void Main(string[] args)
+    static void Main(string[] args)
     {
         ServiceCollection serviceCollection = new();
         ConfigureServices(serviceCollection);
@@ -12,7 +12,7 @@ public class Program
         var serviceProvider = serviceCollection.BuildServiceProvider();
         
         var game = serviceProvider.GetService<CGame>();
-        game.Start();
+        game?.Start();
     }
 
     private static void ConfigureServices(IServiceCollection services)
@@ -38,31 +38,3 @@ public class Program
         services.AddSingleton<CGame>();
     }
 }
-
-/*class Program
-{
-    static void Main(string[] args)
-    {
-        List<CPlayer> players = new();
-        
-        players.Add(new CPlayer("Player 1"));
-        players.Add(new CPlayer("Player 2"));
-        
-        IBoard board = new CBoard();
-        IRender boardRenderer = new CRender(board);
-        IMove moveValidator = new CMove(board);
-        IScoreboard scoreboard = new CScoreboard(players);
-        ITurnController turnController = new CTurnController();
-        IInput inputHandler = new CInput();
-        
-        CGame game = new (
-            board,
-            boardRenderer,
-            moveValidator,
-            scoreboard,
-            turnController,
-            inputHandler
-        );
-        game.Start();
-    }
-}*/
