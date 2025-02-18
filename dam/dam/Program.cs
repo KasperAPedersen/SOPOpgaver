@@ -9,7 +9,7 @@ class Program
         ServiceCollection serviceCollection = new();
         ConfigureServices(serviceCollection);
         
-        var serviceProvider = serviceCollection.BuildServiceProvider();
+        ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
         
         var game = serviceProvider.GetService<CGame>();
         game?.Start();
@@ -19,7 +19,7 @@ class Program
     {
         services.AddSingleton(provider =>
         {
-            var players = new List<CPlayer>
+            List<CPlayer> players = new List<CPlayer>
             {
                 new CPlayer("Player 1"),
                 new CPlayer("Player 2")
