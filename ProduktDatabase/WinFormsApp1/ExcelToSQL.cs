@@ -19,11 +19,11 @@ namespace WinFormsApp1
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                e.Effect = DragDropEffects.Copy; // Allow copy effect
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
-                e.Effect = DragDropEffects.None; // Disallow drop
+                e.Effect = DragDropEffects.None;
             }
         }
 
