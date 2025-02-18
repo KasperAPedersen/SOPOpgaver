@@ -1,14 +1,48 @@
 ﻿namespace dam;
 
-class Program
+using Microsoft.Extensions.DependencyInjection;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        ServiceCollection serviceCollection = new();
+        ConfigureServices(serviceCollection);
+        
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+        
+        var game = serviceProvider.GetService<CGame>();
+        game.Start();
+    }
+
+    private static void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton(provider =>
+        {
+            var players = new List<CPlayer>
+            {
+                new CPlayer("Player 1"),
+                new CPlayer("Player 2")
+            };
+            return players;
+        });
+        
+        services.AddSingleton<IBoard, CBoard>();
+        services.AddSingleton<IRender, CRender>();
+        services.AddSingleton<IMove, CMove>();
+        services.AddSingleton<IScoreboard, CScoreboard>();
+        services.AddSingleton<ITurnController, CTurnController>();
+        services.AddSingleton<IInput, CInput>();
+        services.AddSingleton<IStatus, CStatus>();
+        
+        services.AddSingleton<CGame>();
+    }
+}
+
+/*class Program
 {
     static void Main(string[] args)
     {
-        /*Console.Write("Enter name of player 1: ");
-        string player1 = Console.ReadLine() ?? "Player 1";
-        Console.Write("Enter name of player 2: ");
-        string player2 = Console.ReadLine() ?? "Player 2";*/
-        
         List<CPlayer> players = new();
         
         players.Add(new CPlayer("Player 1"));
@@ -31,4 +65,4 @@ class Program
         );
         game.Start();
     }
-}
+}*/

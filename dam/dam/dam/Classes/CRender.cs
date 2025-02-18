@@ -1,8 +1,11 @@
 ﻿namespace dam;
 
+using System.Drawing;
+
 public class CRender : IRender
 {
     private readonly IBoard _board;
+    private readonly Point Position = new Point(5, 7);
 
     public CRender(IBoard board)
     {
@@ -11,7 +14,10 @@ public class CRender : IRender
     
     public void Render()
     {
+        int currentHeight = 0;
+        Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
         Console.WriteLine("  A B C D E F G H");
+        Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
         for (int row = _board.Size - 1; row >= 0; row--)
         {
             Console.Write($"{row + 1} ");
@@ -32,7 +38,7 @@ public class CRender : IRender
                 Console.ResetColor();
             }
             Console.Write($" {row + 1}");
-            Console.WriteLine();
+            Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
         }
         Console.WriteLine("  A B C D E F G H");
     }

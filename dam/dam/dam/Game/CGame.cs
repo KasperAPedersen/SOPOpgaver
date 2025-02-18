@@ -8,6 +8,7 @@ public class CGame
     private readonly IScoreboard _scoreboard;
     private readonly ITurnController _turnController;
     private readonly IInput _inputHandler;
+    private readonly IStatus _status;
 
     public CGame(
         IBoard board,
@@ -15,7 +16,8 @@ public class CGame
         IMove moveValidator,
         IScoreboard scoreboard,
         ITurnController turnController, 
-        IInput inputHandler
+        IInput inputHandler,
+        IStatus status
     )
     {
         _board = board;
@@ -24,27 +26,25 @@ public class CGame
         _scoreboard = scoreboard;
         _turnController = turnController;
         _inputHandler = inputHandler;
+        _status = status;
     }
 
     public void Start()
     {
+        
         while (true)
         {
             int playerIndex = _turnController.IsPlayer1Turn ? 0 : 1;
 
             Console.Clear();
             _boardRenderer.Render();
-            Console.SetCursorPosition(50, 4);
-            Console.WriteLine(_turnController.IsPlayer1Turn ? $"{_scoreboard.GetPlayers()[0].Name}'s turn (Red)" : $"{_scoreboard.GetPlayers()[1].Name}'s turn (Green)");
-
             _scoreboard.Render();
 
             // Get user input
             var move = _inputHandler.ParseMove();
             if (move == null)
             {
-                Console.SetCursorPosition(50, 7);
-                Console.WriteLine("Invalid move. Press any key to continue...");
+                _status.ShowError("Invalid input. Please enter a valid square (e.g., A3).");
                 Console.ReadKey();
                 continue;
             }
@@ -53,8 +53,7 @@ public class CGame
             var owner = _board.GetSquareOwner(move.Value.fromRow, move.Value.fromCol);
             if ((_turnController.IsPlayer1Turn && owner != Owner.Player1) || (!_turnController.IsPlayer1Turn && owner != Owner.Player2))
             {
-                Console.SetCursorPosition(50, 7);
-                Console.WriteLine("Not your piece. Press any key to continue...");
+                _status.ShowError("You can only move your own piece. Press any key to continue...");
                 Console.ReadKey();
                 continue;
             }
@@ -62,8 +61,7 @@ public class CGame
             // Check if the destination square is empty
             if (!_board.IsSquareEmpty(move.Value.toRow, move.Value.toCol))
             {
-                Console.SetCursorPosition(50, 7);
-                Console.WriteLine("The destination square is not empty. Press any key to continue...");
+                _status.ShowError("Destination square is not empty. Press any key to continue...");
                 Console.ReadKey();
                 continue;
             }
@@ -72,8 +70,7 @@ public class CGame
             bool isSkipMove = _moveValidator.IsValidSkipMove(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol, owner.Value);
             if (!_moveValidator.IsOneSquareMove(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol) && !isSkipMove)
             {
-                Console.SetCursorPosition(50, 7);
-                Console.WriteLine("Invalid move. Press any key to continue...");
+                _status.ShowError("Invalid move. Press any key to continue...");
                 Console.ReadKey();
                 continue;
             }
@@ -81,8 +78,7 @@ public class CGame
             // Check if the move is forward
             if (!_turnController.IsForwardMove(move.Value.fromRow, move.Value.toRow, _board.GetPiece(move.Value.fromRow, move.Value.fromCol)))
             {
-                Console.SetCursorPosition(50, 7);
-                Console.WriteLine("You can only move forward. Press any key to continue...");
+                _status.ShowError("You can only move forward. Press any key to continue...");
                 Console.ReadKey();
                 continue;
             }
@@ -106,19 +102,13 @@ public class CGame
                     _boardRenderer.Render();
                     _scoreboard.Render();
 
-                    Console.SetCursorPosition(50, 4);
-                    Console.WriteLine(_turnController.IsPlayer1Turn ? $"{_scoreboard.GetPlayers()[0].Name}'s turn (Red)" : $"{_scoreboard.GetPlayers()[1].Name}'s turn (Green)");
-                    Console.SetCursorPosition(50, 7);
-
                     // Get user input for the next skip move
                     var nextMove = _inputHandler.ParseMove(move.Value.toRow, move.Value.toCol);
                     while(nextMove == null)
                     {
-                        Console.SetCursorPosition(50, 7);
-                        Console.WriteLine("Invalid move. Press any key to continue...");
+                        _status.ShowError("Invalid input. Press any key to continue...");
                         Console.ReadKey();
-                        Console.SetCursorPosition(50, 7);
-                        Console.Write(new string(' ', Console.WindowWidth - 50));
+                        _status.ClearStatus();
                         nextMove = _inputHandler.ParseMove(move.Value.toRow, move.Value.toCol);
                     }
 
@@ -126,11 +116,9 @@ public class CGame
                     isSkipMove = _moveValidator.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
                     while(!isSkipMove)
                     {
-                        Console.SetCursorPosition(50, 7);
-                        Console.WriteLine("Invalid move. Press any key to continue...");
+                        _status.ShowError("Invalid move. Press any key to continue...");
                         Console.ReadKey();
-                        Console.SetCursorPosition(50, 7);
-                        Console.Write(new string(' ', Console.WindowWidth - 50));
+                        _status.ClearStatus();
                         nextMove = _inputHandler.ParseMove(move.Value.toRow, move.Value.toCol);
                         isSkipMove = _moveValidator.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
                     }

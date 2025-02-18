@@ -2,6 +2,13 @@
 
 public class CInput : IInput
 {
+    private readonly IStatus _status;
+    
+    public CInput(IStatus status)
+    {
+        _status = status;
+    }
+    
     public (int fromRow, int fromCol, int toRow, int toCol)? ParseMove(int? initialRow = null, int? initialCol = null)
     {
         var from = initialRow.HasValue && initialCol.HasValue
@@ -28,8 +35,7 @@ public class CInput : IInput
 
     private string UserInput(string text)
     {
-        Console.SetCursorPosition(50, 5);
-        Console.Write(text);
+        _status.Render(text);
         string tmp;
         do
         {
@@ -38,12 +44,8 @@ public class CInput : IInput
             if (!(tmp == null || tmp.Length != 2 || tmp[0] < 'A' || tmp[0] > 'H' || tmp[1] < '1' || tmp[1] > '8'))
                 break;
 
-            Console.SetCursorPosition(50, 7);
-            Console.WriteLine("Invalid input. Please enter a valid square (e.g., A3).");
-            Console.SetCursorPosition(50, 5);
-            Console.Write(new string(' ', Console.WindowWidth - 50));
-            Console.SetCursorPosition(50, 5);
-            Console.Write(text);
+            _status.ShowError("Invalid input. Please enter a valid square (e.g., A3).");
+            _status.Render(text);
         } while (true);
 
         return tmp;
