@@ -5,7 +5,7 @@ public class CGame
     private CBoard board;
     private CScoreboard scoreboard;
     private bool isPlayer1Turn;
-    private List<Player> players = [];
+    private List<Player> players = new();
 
     public CGame(string? player1 = null, string? player2 = null)
     {
@@ -43,7 +43,7 @@ public class CGame
 
             // Check if player is moving their own piece
             var owner = board.GetSquareOwner(move.Value.fromRow, move.Value.fromCol);
-            if ((isPlayer1Turn && owner != CBoard.SquareState.Player1) || (!isPlayer1Turn && owner != CBoard.SquareState.Player2))
+            if ((isPlayer1Turn && owner != Owner.Player1) || (!isPlayer1Turn && owner != Owner.Player2))
             {
                 Console.SetCursorPosition(50, 7);
                 Console.WriteLine("Not your piece. Press any key to continue...");
@@ -71,7 +71,7 @@ public class CGame
             }
 
             // Check if the move is forward
-            if (!IsForwardMove(move.Value.fromRow, move.Value.toRow))
+            if (!IsForwardMove(move.Value.fromRow, move.Value.toRow, board.GetPiece(move.Value.fromRow, move.Value.fromCol)))
             {
                 Console.SetCursorPosition(50, 7);
                 Console.WriteLine("You can only move forward. Press any key to continue...");
@@ -146,8 +146,12 @@ public class CGame
         }
     }
 
-    private bool IsForwardMove(int fromRow, int toRow)
+    private bool IsForwardMove(int fromRow, int toRow, Piece piece)
     {
+        if (piece.PieceType == Type.King)
+        {
+            return true; // Kings can move in any direction
+        }
         return isPlayer1Turn ? toRow > fromRow : toRow < fromRow;
     }
 

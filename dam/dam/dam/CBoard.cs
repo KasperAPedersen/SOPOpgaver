@@ -2,21 +2,12 @@
 
 public class CBoard
 {
-    public enum SquareState
-    {
-        Empty,
-        Player1,
-        Player2,
-        Player1King,
-        Player2King
-    }
-
     private const int BoardSize = 8;
-    private List<SquareState>[,] board;
+    private List<Piece>[,] board;
 
     public CBoard()
     {
-        board = new List<SquareState>[BoardSize, BoardSize];
+        board = new List<Piece>[BoardSize, BoardSize];
         InitializeBoard();
     }
 
@@ -28,7 +19,7 @@ public class CBoard
         {
             for (int col = 0; col < BoardSize; col++)
             {
-                board[row, col] = new List<SquareState>();
+                board[row, col] = new List<Piece>();
                 if ((row + col) % 2 != 0) // only use dark squares
                 {
                     continue;
@@ -36,17 +27,17 @@ public class CBoard
 
                 if (row < 3) // Add player 1 pieces
                 {
-                    board[row, col].Add(SquareState.Player1);
+                    board[row, col].Add(new Piece(Owner.Player1));
                 }
                 else if (row > 4) // Add player 2 pieces
                 {
-                    board[row, col].Add(SquareState.Player2);
+                    board[row, col].Add(new Piece(Owner.Player2));
                 }
             }
         }
     }
-    
-    public SquareState? GetSquareOwner(int row, int col)
+
+    public Owner? GetSquareOwner(int row, int col)
     {
         if (row < 0 || row >= BoardSize || col < 0 || col >= BoardSize)
         {
@@ -57,23 +48,22 @@ public class CBoard
         {
             return null;
         }
-        return board[row, col].Last();
+        return board[row, col].Last().PieceOwner;
     }
-    
+
     public bool IsSquareEmpty(int row, int col)
     {
         return board[row, col].Count == 0;
     }
-    
+
     public bool IsOneSquareMove(int fromRow, int fromCol, int toRow, int toCol)
     {
         int rowDistance = Math.Abs(toRow - fromRow);
         int colDistance = Math.Abs(toCol - fromCol);
         return rowDistance == 1 && colDistance == 1;
     }
-    
-    
-    public bool IsValidSkipMove(int fromRow, int fromCol, int toRow, int toCol, SquareState player)
+
+    public bool IsValidSkipMove(int fromRow, int fromCol, int toRow, int toCol, Owner player)
     {
         int rowDistance = Math.Abs(toRow - fromRow);
         int colDistance = Math.Abs(toCol - fromCol);
@@ -84,7 +74,7 @@ public class CBoard
             int middleCol = (fromCol + toCol) / 2;
             var middleSquareOwner = GetSquareOwner(middleRow, middleCol);
 
-            if (middleSquareOwner.HasValue && middleSquareOwner.Value != player && middleSquareOwner.Value != SquareState.Empty)
+            if (middleSquareOwner.HasValue && middleSquareOwner.Value != player)
             {
                 // Check if the destination square is empty
                 if (IsSquareEmpty(toRow, toCol))
@@ -95,8 +85,8 @@ public class CBoard
         }
         return false;
     }
-    
-    public bool HasPossibleSkipMove(int row, int col, SquareState owner)
+
+    public bool HasPossibleSkipMove(int row, int col, Owner owner)
     {
         // Check if the piece is on the second last row
         if (row == 1 || row == BoardSize - 2)
@@ -123,7 +113,7 @@ public class CBoard
 
         return false;
     }
-    
+
     public void RemovePiece(int row, int col)
     {
         if (board[row, col].Count > 0)
@@ -131,7 +121,7 @@ public class CBoard
             board[row, col].RemoveAt(board[row, col].Count - 1);
         }
     }
-    
+
     public void MovePiece(int fromRow, int fromCol, int toRow, int toCol)
     {
         if (board[fromRow, fromCol].Count > 0)
@@ -140,17 +130,30 @@ public class CBoard
             board[fromRow, fromCol].RemoveAt(board[fromRow, fromCol].Count - 1);
 
             // Promote to king if reaching the opposite end
-            if (piece == SquareState.Player1 && toRow == BoardSize - 1)
+            if (piece.PieceOwner == Owner.Player1 && toRow == BoardSize - 1)
             {
-                piece = SquareState.Player1King;
+                piece.PromoteToKing();
             }
-            else if (piece == SquareState.Player2 && toRow == 0)
+            else if (piece.PieceOwner == Owner.Player2 && toRow == 0)
             {
-                piece = SquareState.Player2King;
+                piece.PromoteToKing();
             }
 
             board[toRow, toCol].Add(piece);
+
+            // Remove the skipped piece
+            if (Math.Abs(toRow - fromRow) == 2 && Math.Abs(toCol - fromCol) == 2)
+            {
+                int skippedRow = (fromRow + toRow) / 2;
+                int skippedCol = (fromCol + toCol) / 2;
+                RemovePiece(skippedRow, skippedCol);
+            }
         }
+    }
+
+    public Piece GetPiece(int row, int col)
+    {
+        return board[row, col].Last();
     }
 
     public void Render()
@@ -165,8 +168,8 @@ public class CBoard
                 if (board[row, col].Count > 0)
                 {
                     var piece = board[row, col].Last();
-                    Console.ForegroundColor = piece == SquareState.Player1 || piece == SquareState.Player1King ? ConsoleColor.Red : ConsoleColor.Green;
-                    Console.Write(piece == SquareState.Player1King || piece == SquareState.Player2King ? "K " : $"{board[row, col].Count} ");
+                    Console.ForegroundColor = piece.PieceOwner == Owner.Player1 ? ConsoleColor.Red : ConsoleColor.Green;
+                    Console.Write(piece.PieceType == Type.King ? "K " : $"{board[row, col].Count} ");
                     Console.ResetColor();
                 }
                 else
