@@ -7,7 +7,17 @@ public class CInput : IInput
         var from = initialRow.HasValue && initialCol.HasValue
             ? (initialRow.Value, initialCol.Value)
             : ParsePosition(UserInput("Select piece (e.g., A3): "));
-
+        
+        // Make the selected piece blink
+        if (from != null)
+        {
+            // get the position f the selected piece
+            Console.SetCursorPosition(from.Value.col, from.Value.row);
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.Write("  ");
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+        
         var to = ParsePosition(UserInput("Select destination (e.g., A3): "));
 
         if (from == null || to == null)
