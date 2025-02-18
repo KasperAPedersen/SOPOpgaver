@@ -3,6 +3,8 @@
 public class CGame
 {
     private CBoard board;
+    private CRender boardRenderer;
+    private CMove moveValidator;
     private CScoreboard scoreboard;
     private bool isPlayer1Turn;
     private List<Player> players = new();
@@ -13,6 +15,8 @@ public class CGame
         players.Add(new Player(player2 ?? "Player 2"));
 
         board = new CBoard();
+        boardRenderer = new CRender(board);
+        moveValidator = new CMove(board);
         isPlayer1Turn = true;
 
         scoreboard = new CScoreboard(players);
@@ -25,7 +29,7 @@ public class CGame
             int playerIndex = isPlayer1Turn ? 0 : 1;
 
             Console.Clear();
-            board.Render();
+            boardRenderer.Render();
             Console.SetCursorPosition(50, 4);
             Console.WriteLine(isPlayer1Turn ? $"{players[0].Name}'s turn (Red)" : $"{players[1].Name}'s turn (Green)");
 
@@ -61,8 +65,8 @@ public class CGame
             }
 
             // Check if the move is a valid one-square move or a valid skip move
-            bool isSkipMove = board.IsValidSkipMove(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol, owner.Value);
-            if (!board.IsOneSquareMove(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol) && !isSkipMove)
+            bool isSkipMove = moveValidator.IsValidSkipMove(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol, owner.Value);
+            if (!moveValidator.IsOneSquareMove(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol) && !isSkipMove)
             {
                 Console.SetCursorPosition(50, 7);
                 Console.WriteLine("Invalid move. Press any key to continue...");
@@ -92,10 +96,10 @@ public class CGame
                 board.RemovePiece(skippedRow, skippedCol);
 
                 // Check for additional skips with the same piece
-                while (board.HasPossibleSkipMove(move.Value.toRow, move.Value.toCol, owner.Value))
+                while (moveValidator.HasPossibleSkipMove(move.Value.toRow, move.Value.toCol, owner.Value))
                 {
                     Console.Clear();
-                    board.Render();
+                    boardRenderer.Render();
                     scoreboard.Render();
 
                     Console.SetCursorPosition(50, 4);
@@ -115,7 +119,7 @@ public class CGame
                     }
 
                     // Check if the next move is a valid skip move
-                    isSkipMove = board.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
+                    isSkipMove = moveValidator.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
                     while(!isSkipMove)
                     {
                         Console.SetCursorPosition(50, 7);
@@ -124,7 +128,7 @@ public class CGame
                         Console.SetCursorPosition(50, 7);
                         Console.Write(new string(' ', Console.WindowWidth - 50)); // Clear the previous input
                         nextMove = ParseMove(move.Value.toRow, move.Value.toCol);
-                        isSkipMove = board.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
+                        isSkipMove = moveValidator.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
                     }
 
                     // Move the piece
@@ -146,7 +150,7 @@ public class CGame
         }
     }
 
-    private bool IsForwardMove(int fromRow, int toRow, Piece piece)
+    private bool IsForwardMove(int fromRow, int toRow, CPiece piece)
     {
         if (piece.PieceType == Type.King)
         {

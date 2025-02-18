@@ -1,23 +1,23 @@
 ﻿namespace dam;
 
 public enum Type
-    {
-        Normal,
-        King
-    }
-    
-    public enum Owner
-    {
-        Player1,
-        Player2
-    }
+{
+    Normal,
+    King
+}
 
-public class Piece
+public enum Owner
+{
+    Player1,
+    Player2
+}
+
+public class CPiece
 {
     public Type PieceType { get; private set; }
     public Owner PieceOwner { get; private set; }
 
-    public Piece(Owner owner, Type type = Type.Normal)
+    public CPiece(Owner owner, Type type = Type.Normal)
     {
         PieceOwner = owner;
         PieceType = type;
