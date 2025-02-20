@@ -2,21 +2,11 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-class Program
+public static class CDependencyInjection
 {
-    public static void Main(string[] args)
+    public static void ConfigureServices(IServiceCollection services)
     {
-        ServiceCollection serviceCollection = new();
-        ConfigureServices(serviceCollection);
         
-        ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-        
-        var game = serviceProvider.GetService<CGame>();
-        game?.Start();
-    }
-
-    private static void ConfigureServices(IServiceCollection services)
-    {
         services.AddSingleton(provider =>
         {
             List<CPlayer> players = new List<CPlayer>

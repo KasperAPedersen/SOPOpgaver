@@ -31,7 +31,6 @@ public class CGame
 
     public void Start()
     {
-        
         while (true)
         {
             int playerIndex = _turnController.IsPlayer1Turn ? 0 : 1;
