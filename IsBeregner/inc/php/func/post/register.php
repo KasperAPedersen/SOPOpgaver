@@ -5,7 +5,6 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        // Check if the username already exists
         $stmt = $pdo->prepare('SELECT * FROM users WHERE username = ?');
         $stmt->execute([$username]);
         $user = $stmt->fetch();
@@ -15,7 +14,6 @@
         } else {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert the new user into the database
             $stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
             if ($stmt->execute([$username, $hashedPassword])) {
                 header('Location: /login.html');
