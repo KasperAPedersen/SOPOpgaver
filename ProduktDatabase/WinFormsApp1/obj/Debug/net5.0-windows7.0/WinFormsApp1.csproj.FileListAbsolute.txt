@@ -1,0 +1,8 @@
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.csproj.AssemblyReference.cache
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.Form1.resources
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.AssemblyInfo.cs
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\ProduktDatabase\WinFormsApp1\obj\Debug\net5.0-windows7.0\WinFormsApp1.sourcelink.json

@@ -1,0 +1,6 @@
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\dam\dam\obj\Debug\net6.0\dam.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\dam\dam\obj\Debug\net6.0\dam.AssemblyInfoInputs.cache
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\dam\dam\obj\Debug\net6.0\dam.AssemblyInfo.cs
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\dam\dam\obj\Debug\net6.0\dam.csproj.CoreCompileInputs.cache
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\dam\dam\obj\Debug\net6.0\dam.sourcelink.json
+C:\Users\zbc23kaped\source\repos\SOPOpgaver\dam\dam\obj\Debug\net6.0\dam.csproj.AssemblyReference.cache
