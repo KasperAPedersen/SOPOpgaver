@@ -6,7 +6,6 @@ public static class CDependencyInjection
 {
     public static void ConfigureServices(IServiceCollection services)
     {
-        
         services.AddSingleton(provider =>
         {
             List<CPlayer> players = new List<CPlayer>
