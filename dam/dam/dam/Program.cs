@@ -11,7 +11,7 @@ class Program
         
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
         
-        var game = serviceProvider.GetService<CGame>();
-        game?.Start();
+        var game = serviceProvider.GetRequiredService<CGame>();
+        game.Start();
     }
 }

@@ -4,7 +4,7 @@ using System.Drawing;
 
 public class CStatus : IStatus
 {
-    private readonly Point _position = new Point(5, 18);
+    private readonly Point _position = new Point(100, 18);
     
     private readonly ITurnController _turnController;
     private readonly IScoreboard _scoreboard;

@@ -6,7 +6,7 @@ public class CScoreboard : IScoreboard
 {
     private List<CPlayer> players = [];
     private int width = 20;
-    private Point Position = new Point(5, 2); 
+    private Point Position = new Point(100, 2); 
     
     public CScoreboard(List<CPlayer> players)
     {

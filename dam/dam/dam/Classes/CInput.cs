@@ -17,7 +17,6 @@ public class CInput : IInput
             ? (initialRow.Value, initialCol.Value)
             : ParsePosition(UserInput("Select piece (e.g., A3): "));
         
-        // Make the selected piece blink
         if (from != null)
         {
             _render.RenderSelectedPiece(from.Value.row, from.Value.col);

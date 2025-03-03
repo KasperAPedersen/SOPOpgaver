@@ -5,47 +5,69 @@ using System.Drawing;
 public class CRender : IRender
 {
     private readonly IBoard _board;
-    private readonly Point Position = new Point(5, 7);
+    private readonly Point Position = new Point(0, 0);
+    private const int squareWidth = 10;
+    private const int squareHeight = 5;
 
     public CRender(IBoard board)
     {
         _board = board;
     }
-    
+
     public void Render()
     {
+        string padding = new string(' ', (squareWidth - 1) / 2);
+        string headerPadding = padding + padding;
         int currentHeight = 0;
         Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
-        Console.WriteLine("  A B C D E F G H");
-        Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
+        Console.WriteLine($"  {padding}A{headerPadding}B{headerPadding}C{headerPadding}D{headerPadding}E{headerPadding}F{headerPadding}G{headerPadding}H");
         for (int row = _board.Size - 1; row >= 0; row--)
         {
-            Console.Write($"{row + 1} ");
-            for (int col = 0; col < _board.Size; col++)
+            for (int i = 0; i < squareHeight; i++)
             {
-                Console.BackgroundColor = (row + col) % 2 != 0 ? ConsoleColor.White : ConsoleColor.Black;
-                if (!_board.IsSquareEmpty(row, col))
+                Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
+                if (i == 2)
                 {
-                    var piece = _board.GetPiece(row, col);
-                    Console.ForegroundColor = piece.PieceOwner == Owner.Player1 ? ConsoleColor.Red : ConsoleColor.Green;
-                    Console.Write(piece.PieceType == Type.King ? "K " : "O ");
-                    Console.ResetColor();
+                    Console.Write($"{row + 1} ");
+                    for (int col = 0; col < _board.Size; col++)
+                    {
+                        Console.BackgroundColor = (row + col) % 2 != 0 ? ConsoleColor.White : ConsoleColor.Black;
+                        if (!_board.IsSquareEmpty(row, col))
+                        {
+                            var piece = _board.GetPiece(row, col);
+                            Console.ForegroundColor = piece.PieceOwner == Owner.Player1 ? ConsoleColor.Red : ConsoleColor.Green;
+                            Console.Write(piece.PieceType == Type.King ? padding + "K" + padding : padding + "O" + padding);
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(new string(' ', squareWidth - 1));
+                        }
+                        Console.ResetColor();
+                    }
+                    Console.Write($" {row + 1}");
                 }
                 else
                 {
                     Console.Write("  ");
+                    for (int col = 0; col < _board.Size; col++)
+                    {
+                        Console.BackgroundColor = (row + col) % 2 != 0 ? ConsoleColor.White : ConsoleColor.Black;
+                        Console.Write(new string(' ', squareWidth - 1));
+                        Console.ResetColor();
+                    }
                 }
-                Console.ResetColor();
             }
-            Console.Write($" {row + 1}");
-            Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
         }
-        Console.WriteLine("  A B C D E F G H");
+        Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
+        Console.WriteLine($"  {padding}A{headerPadding}B{headerPadding}C{headerPadding}D{headerPadding}E{headerPadding}F{headerPadding}G{headerPadding}H");
     }
 
     public void RenderSelectedPiece(int row, int col)
     {
-        Console.SetCursorPosition(Position.X + 2 * col + 2, Position.Y + _board.Size - row);
-        Console.Write("\u001b[38;5;50m\u001b[5mO \u001b[0m");
+        
+        // INCORRECT CURSOR POSITION
+        Console.SetCursorPosition(Position.X + squareWidth * col + squareWidth / 2, Position.Y + squareHeight * (_board.Size - row) - squareHeight / 2);
+        Console.Write("X");
     }
 }
