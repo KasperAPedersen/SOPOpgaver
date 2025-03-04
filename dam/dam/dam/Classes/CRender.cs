@@ -4,10 +4,12 @@ using System.Drawing;
 
 public class CRender : IRender
 {
+    private const bool largeBoard = true;
+    
     private readonly IBoard _board;
     private readonly Point Position = new Point(0, 0);
-    private const int squareWidth = 11;
-    private const int squareHeight = 5;
+    private const int squareWidth = largeBoard ? 11 : 9;
+    private const int squareHeight = largeBoard ? 5 : 4;
 
     public CRender(IBoard board)
     {
@@ -56,7 +58,7 @@ public class CRender : IRender
                         {
                             var piece = _board.GetPiece(row, col);
                             int pieceColor = piece.PieceOwner == Owner.Player1 ? 101 : 102;
-                            Console.Write(new string(' ', (squareWidth - 2) / 2) + $"\u001b[{pieceColor}m  \u001b[0m" + new string(' ', (squareWidth - 2) / 2)); // vertical line of piece
+                            Console.Write($"\u001b[0m  \u001b[{pieceColor}m" + new string(' ', squareWidth - 1 - 4) + "\u001b[0m  "); // vertical line of piece
                         }
                         else
                         {
@@ -67,6 +69,7 @@ public class CRender : IRender
                 }
             }
         }
+        
         Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
         Console.WriteLine($"  {padding}A {headerPadding}B {headerPadding}C {headerPadding}D {headerPadding}E {headerPadding}F {headerPadding}G {headerPadding}H ");
     }
@@ -86,7 +89,7 @@ public class CRender : IRender
             }
             
             // Vertical
-            Console.Write(new string(' ', (squareWidth - 2) / 2) + $"\u001b[46m  \u001b[0m" + new string(' ', (squareWidth - 2) / 2));
+            Console.WriteLine("  \u001b[46m" + new string(' ', squareWidth - 5) + "\u001b[0m  ");
         }
     }
 }
