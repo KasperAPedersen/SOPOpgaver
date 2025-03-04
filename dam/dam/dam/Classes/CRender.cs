@@ -6,7 +6,7 @@ public class CRender : IRender
 {
     private readonly IBoard _board;
     private readonly Point Position = new Point(0, 0);
-    private const int squareWidth = 10;
+    private const int squareWidth = 11;
     private const int squareHeight = 5;
 
     public CRender(IBoard board)
@@ -16,11 +16,11 @@ public class CRender : IRender
 
     public void Render()
     {
-        string padding = new string(' ', (squareWidth - 1) / 2);
+        string padding = new string(' ', ((squareWidth - 1) / 2) - 1);
         string headerPadding = padding + padding;
         int currentHeight = 0;
         Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
-        Console.WriteLine($"  {padding}A{headerPadding}B{headerPadding}C{headerPadding}D{headerPadding}E{headerPadding}F{headerPadding}G{headerPadding}H");
+        Console.WriteLine($"  {padding}A {headerPadding}B {headerPadding}C {headerPadding}D {headerPadding}E {headerPadding}F {headerPadding}G {headerPadding}H ");
         for (int row = _board.Size - 1; row >= 0; row--)
         {
             for (int i = 0; i < squareHeight; i++)
@@ -35,9 +35,8 @@ public class CRender : IRender
                         if (!_board.IsSquareEmpty(row, col))
                         {
                             var piece = _board.GetPiece(row, col);
-                            Console.ForegroundColor = piece.PieceOwner == Owner.Player1 ? ConsoleColor.Red : ConsoleColor.Green;
-                            Console.Write(piece.PieceType == Type.King ? padding + "K" + padding : padding + "O" + padding);
-                            Console.ResetColor();
+                            int pieceColor = piece.PieceOwner == Owner.Player1 ? 101 : 102;
+                            Console.Write($"\u001b[0m  \u001b[{pieceColor}m" + new string(' ', squareWidth - 1 - 4) + "\u001b[0m  "); // horizontal line of piece
                         }
                         else
                         {
@@ -53,21 +52,41 @@ public class CRender : IRender
                     for (int col = 0; col < _board.Size; col++)
                     {
                         Console.BackgroundColor = (row + col) % 2 != 0 ? ConsoleColor.White : ConsoleColor.Black;
-                        Console.Write(new string(' ', squareWidth - 1));
+                        if (!_board.IsSquareEmpty(row, col) && i != 0 && i != squareHeight - 1)
+                        {
+                            var piece = _board.GetPiece(row, col);
+                            int pieceColor = piece.PieceOwner == Owner.Player1 ? 101 : 102;
+                            Console.Write(new string(' ', (squareWidth - 2) / 2) + $"\u001b[{pieceColor}m  \u001b[0m" + new string(' ', (squareWidth - 2) / 2)); // vertical line of piece
+                        }
+                        else
+                        {
+                            Console.Write(new string(' ', squareWidth - 1));
+                        }
                         Console.ResetColor();
                     }
                 }
             }
         }
         Console.SetCursorPosition(Position.X, Position.Y + currentHeight++);
-        Console.WriteLine($"  {padding}A{headerPadding}B{headerPadding}C{headerPadding}D{headerPadding}E{headerPadding}F{headerPadding}G{headerPadding}H");
+        Console.WriteLine($"  {padding}A {headerPadding}B {headerPadding}C {headerPadding}D {headerPadding}E {headerPadding}F {headerPadding}G {headerPadding}H ");
     }
 
     public void RenderSelectedPiece(int row, int col)
     {
-        
-        // INCORRECT CURSOR POSITION
-        Console.SetCursorPosition(Position.X + squareWidth * col + squareWidth / 2, Position.Y + squareHeight * (_board.Size - row) - squareHeight / 2);
-        Console.Write("X");
+        var realRow = _board.Size - (row + 1);
+        for(int i = 0; i < squareHeight; i++)
+        {
+            if(i == 0 || i == squareHeight - 1) continue;
+            
+            Console.SetCursorPosition((Position.X + (col * (squareWidth - 1))) + 2, Position.Y + (realRow * squareHeight) + 1 + i);
+            if(i == squareHeight / 2) // horizontal
+            {
+                Console.WriteLine("  \u001b[46m" + new string(' ', squareWidth - 5) + "\u001b[0m  ");
+                continue;
+            }
+            
+            // Vertical
+            Console.Write(new string(' ', (squareWidth - 2) / 2) + $"\u001b[46m  \u001b[0m" + new string(' ', (squareWidth - 2) / 2));
+        }
     }
 }
