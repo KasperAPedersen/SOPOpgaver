@@ -25,6 +25,12 @@ public class CMove : IMove
         {
             int middleRow = (fromRow + toRow) / 2;
             int middleCol = (fromCol + toCol) / 2;
+
+            // Check if middle and destination squares are within bounds
+            if (middleRow < 0 || middleRow >= board.BoardSize || middleCol < 0 || middleCol >= board.BoardSize ||
+                toRow < 0 || toRow >= board.BoardSize || toCol < 0 || toCol >= board.BoardSize)
+                return false;
+
             var middleSquareOwner = board.GetSquareOwner(middleRow, middleCol);
 
             if (middleSquareOwner.HasValue && middleSquareOwner.Value != player)
@@ -38,7 +44,7 @@ public class CMove : IMove
     
     public bool HasPossibleSkipMove(int row, int col, Owner owner)
     {
-        if (row == 1 || row == board.Size - 2) // Check if the piece is on the second last row
+        if (row == 1 || row == board.BoardSize - 2) // Check if the piece is on the second last row
             return false;
 
         // Check all possible skip directions
@@ -52,8 +58,13 @@ public class CMove : IMove
         {
             int newRow = row + direction[0];
             int newCol = col + direction[1];
-            if (IsValidSkipMove(row, col, newRow, newCol, owner))
-                return true;
+
+            // Check if newRow and newCol are within bounds
+            if (newRow >= 0 && newRow < board.BoardSize && newCol >= 0 && newCol < board.BoardSize)
+            {
+                if (IsValidSkipMove(row, col, newRow, newCol, owner))
+                    return true;
+            }
         }
 
         return false;

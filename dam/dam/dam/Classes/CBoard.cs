@@ -2,7 +2,7 @@
 
 public class CBoard : IBoard
 {
-    private const int BoardSize = 8;
+    public int BoardSize { get; } = 8;
     private List<CPiece>[,] board;
 
     public CBoard()
@@ -48,6 +48,10 @@ public class CBoard : IBoard
 
     public bool IsSquareEmpty(int row, int col)
     {
+        // Check if row and col are within bounds
+        if (row < 0 || row >= BoardSize || col < 0 || col >= BoardSize)
+            return false; // or throw an exception
+
         return board[row, col].Count == 0;
     }
 

@@ -30,15 +30,19 @@ public class CGame
     }
 
     public void Start()
+{
+    while (true)
     {
-        while (true)
+        int playerIndex = _turnController.IsPlayer1Turn ? 0 : 1;
+
+        Console.Clear();
+        _boardRenderer.Render();
+        _scoreboard.Render();
+
+        // Loop until a valid move is provided
+        bool validMove = false;
+        while (!validMove)
         {
-            int playerIndex = _turnController.IsPlayer1Turn ? 0 : 1;
-
-            Console.Clear();
-            _boardRenderer.Render();
-            _scoreboard.Render();
-
             // Get user input
             var move = _inputHandler.ParseMove();
             if (move == null)
@@ -48,12 +52,25 @@ public class CGame
                 continue;
             }
 
+            // Validate move coordinates
+            if (move.Value.fromRow < 0 || move.Value.fromRow >= _board.BoardSize ||
+                move.Value.fromCol < 0 || move.Value.fromCol >= _board.BoardSize ||
+                move.Value.toRow < 0 || move.Value.toRow >= _board.BoardSize ||
+                move.Value.toCol < 0 || move.Value.toCol >= _board.BoardSize)
+            {
+                _status.ShowError("Invalid move. Coordinates are out of bounds. Press any key to continue...");
+                Console.ReadKey();
+                _boardRenderer.ClearSelector(move.Value.fromRow, move.Value.fromCol); // Clear the selected piece
+                continue;
+            }
+
             // Check if player is moving their own piece
             var owner = _board.GetSquareOwner(move.Value.fromRow, move.Value.fromCol);
             if ((_turnController.IsPlayer1Turn && owner != Owner.Player1) || (!_turnController.IsPlayer1Turn && owner != Owner.Player2))
             {
                 _status.ShowError("You can only move your own piece. Press any key to continue...");
                 Console.ReadKey();
+                _boardRenderer.ClearSelector(move.Value.fromRow, move.Value.fromCol); // Clear the selected piece
                 continue;
             }
 
@@ -62,6 +79,7 @@ public class CGame
             {
                 _status.ShowError("Destination square is not empty. Press any key to continue...");
                 Console.ReadKey();
+                _boardRenderer.ClearSelector(move.Value.fromRow, move.Value.fromCol); // Clear the selected piece
                 continue;
             }
 
@@ -71,6 +89,7 @@ public class CGame
             {
                 _status.ShowError("Invalid move. Press any key to continue...");
                 Console.ReadKey();
+                _boardRenderer.ClearSelector(move.Value.fromRow, move.Value.fromCol); // Clear the selected piece
                 continue;
             }
 
@@ -79,8 +98,12 @@ public class CGame
             {
                 _status.ShowError("You can only move forward. Press any key to continue...");
                 Console.ReadKey();
+                _boardRenderer.ClearSelector(move.Value.fromRow, move.Value.fromCol); // Clear the selected piece
                 continue;
             }
+
+            // If all checks pass, the move is valid
+            validMove = true;
 
             // Move the piece
             _board.MovePiece(move.Value.fromRow, move.Value.fromCol, move.Value.toRow, move.Value.toCol);
@@ -103,7 +126,7 @@ public class CGame
 
                     // Get user input for the next skip move
                     var nextMove = _inputHandler.ParseMove(move.Value.toRow, move.Value.toCol);
-                    while(nextMove == null)
+                    while (nextMove == null)
                     {
                         _status.ShowError("Invalid input. Press any key to continue...");
                         Console.ReadKey();
@@ -113,7 +136,7 @@ public class CGame
 
                     // Check if the next move is a valid skip move
                     isSkipMove = _moveValidator.IsValidSkipMove(nextMove.Value.fromRow, nextMove.Value.fromCol, nextMove.Value.toRow, nextMove.Value.toCol, owner.Value);
-                    while(!isSkipMove)
+                    while (!isSkipMove)
                     {
                         _status.ShowError("Invalid move. Press any key to continue...");
                         Console.ReadKey();
@@ -135,9 +158,10 @@ public class CGame
                     move = nextMove;
                 }
             }
-
-            // Toggle turn
-            _turnController.ToggleTurn();
         }
+
+        // Toggle turn
+        _turnController.ToggleTurn();
     }
+}
 }

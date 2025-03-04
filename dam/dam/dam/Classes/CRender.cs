@@ -91,7 +91,7 @@ public class CRender : IRender
         }
         RenderSelector(row, col);
     }
-
+    
     public void RenderSelector(int row, int col)
     {
         // Clear the previous selector
