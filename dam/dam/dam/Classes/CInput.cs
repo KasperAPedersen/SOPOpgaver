@@ -4,58 +4,77 @@ public class CInput : IInput
 {
     private readonly IStatus _status;
     private readonly IRender _render;
-    
-    public CInput(IStatus status, IRender render)
+    private readonly IBoard _board;
+    private int _selectedRow;
+    private int _selectedCol;
+
+    public CInput(IStatus status, IRender render, IBoard board)
     {
         _status = status;
         _render = render;
+        _board = board;
+        _selectedRow = 0;
+        _selectedCol = 0;
     }
-    
+
     public (int fromRow, int fromCol, int toRow, int toCol)? ParseMove(int? initialRow = null, int? initialCol = null)
     {
-        var from = initialRow.HasValue && initialCol.HasValue
-            ? (initialRow.Value, initialCol.Value)
-            : ParsePosition(UserInput("Select piece (e.g., A3): "));
-        
-        if (from != null)
+        _selectedRow = initialRow ?? 3;
+        _selectedCol = initialCol ?? 3;
+
+        while (true)
         {
-            _render.RenderSelectedPiece(from.Value.row, from.Value.col);
+            _render.RenderSelector(_selectedRow, _selectedCol);
+            var key = Console.ReadKey(true).Key;
+            switch (key)
+            {
+                case ConsoleKey.UpArrow:
+                    if (_selectedRow < _board.Size - 1) _selectedRow++;
+                    break;
+                case ConsoleKey.DownArrow:
+                    if (_selectedRow > 0) _selectedRow--;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    if (_selectedCol > 0) _selectedCol--;
+                    break;
+                case ConsoleKey.RightArrow:
+                    if (_selectedCol < _board.Size - 1) _selectedCol++;
+                    break;
+                case ConsoleKey.Enter:
+                    var from = (_selectedRow, _selectedCol);
+                    _render.RenderSelectedPiece(_selectedRow, _selectedCol);
+                    var to = GetDestination();
+                    if (to != null)
+                        return (from.Item1, from.Item2, to.Value.row, to.Value.col);
+                    break;
+            }
+            //
         }
-        
-        var to = ParsePosition(UserInput("Select destination (e.g., A3): "));
-
-        if (from == null || to == null)
-            return null;
-
-        return (from.Value.row, from.Value.col, to.Value.row, to.Value.col);
     }
 
-    private string UserInput(string text)
+    private (int row, int col)? GetDestination()
     {
-        _status.Render(text);
-        string tmp;
-        do
+        while (true)
         {
-            tmp = Console.ReadLine()?.ToUpper();
-
-            if (!(tmp == null || tmp.Length != 2 || tmp[0] < 'A' || tmp[0] > 'H' || tmp[1] < '1' || tmp[1] > '8'))
-                break;
-
-            _status.ShowError("Invalid input. Please enter a valid square (e.g., A3).");
-            _status.Render(text);
-        } while (true);
-
-        return tmp;
-    }
-
-    private (int row, int col)? ParsePosition(string pos)
-    {
-        if (pos.Length != 2) return null;
-
-        int col = pos[0] - 'A';
-        int row = pos[1] - '1';
-        if (col < 0 || col >= 8 || row < 0 || row >= 8) return null;
-
-        return (row, col);
+            _render.RenderSelector(_selectedRow, _selectedCol);
+            var key = Console.ReadKey(true).Key;
+            switch (key)
+            {
+                case ConsoleKey.UpArrow:
+                    if (_selectedRow < _board.Size - 1) _selectedRow++;
+                    break;
+                case ConsoleKey.DownArrow:
+                    if (_selectedRow > 0) _selectedRow--;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    if (_selectedCol > 0) _selectedCol--;
+                    break;
+                case ConsoleKey.RightArrow:
+                    if (_selectedCol < _board.Size - 1) _selectedCol++;
+                    break;
+                case ConsoleKey.Enter:
+                    return (_selectedRow, _selectedCol);
+            }
+        }
     }
 }
