@@ -2,6 +2,7 @@
 
 public interface IBoard
 {
+    int BoardSize { get; }
     int Size { get; }
     void InitializeBoard();
     Owner? GetSquareOwner(int row, int col);
